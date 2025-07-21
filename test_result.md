@@ -1,87 +1,108 @@
 backend:
   - task: "GET /api/manga endpoint"
     implemented: true
-    working: "NA"
+    working: true
     file: "backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "testing"
         comment: "Initial testing required for manga list endpoint with Ukrainian titles"
+      - working: true
+        agent: "testing"
+        comment: "✅ PASSED - Returns 6 manga with correct Ukrainian titles: Наруто, Атака Титанів, Односкачний, Демон Слейер, Мій Академічний Герой, Джуджицу Кайсен. All required fields present."
 
   - task: "GET /api/manga/{manga_id} endpoint"
     implemented: true
-    working: "NA"
+    working: true
     file: "backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "testing"
         comment: "Initial testing required for specific manga details endpoint"
+      - working: true
+        agent: "testing"
+        comment: "✅ PASSED - Successfully retrieves specific manga details with all required fields. Minor: Invalid ObjectId returns 500 instead of 404, but core functionality works."
 
   - task: "POST /api/cart/{cart_id}/add endpoint"
     implemented: true
-    working: "NA"
+    working: true
     file: "backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "testing"
         comment: "Initial testing required for cart add functionality"
+      - working: true
+        agent: "testing"
+        comment: "✅ PASSED - Successfully adds items to cart, handles quantity updates for existing items, calculates total correctly."
 
   - task: "GET /api/cart/{cart_id} endpoint"
     implemented: true
-    working: "NA"
+    working: true
     file: "backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "testing"
         comment: "Initial testing required for cart retrieval functionality"
+      - working: true
+        agent: "testing"
+        comment: "✅ PASSED - Successfully retrieves cart contents, returns empty cart for non-existent carts, proper JSON structure."
 
   - task: "DELETE /api/cart/{cart_id}/item/{manga_id} endpoint"
     implemented: true
-    working: "NA"
+    working: true
     file: "backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "testing"
         comment: "Initial testing required for cart item removal functionality"
+      - working: true
+        agent: "testing"
+        comment: "✅ PASSED - Successfully removes items from cart, recalculates total correctly, handles empty cart state."
 
   - task: "PUT /api/cart/{cart_id}/item/{manga_id} endpoint"
     implemented: true
-    working: "NA"
+    working: true
     file: "backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "testing"
         comment: "Initial testing required for cart item quantity update functionality"
+      - working: true
+        agent: "testing"
+        comment: "✅ PASSED - Successfully updates item quantities, recalculates total correctly, removes items with 0 quantity."
 
   - task: "Database initialization with Ukrainian manga data"
     implemented: true
-    working: "NA"
+    working: true
     file: "scripts/init_db.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: "NA"
         agent: "testing"
         comment: "Initial testing required to verify 6 Ukrainian manga items in database"
+      - working: true
+        agent: "testing"
+        comment: "✅ PASSED - Database successfully initialized with 6 Ukrainian manga items. All titles, authors, and metadata correctly stored."
 
 frontend: []
 
