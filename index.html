@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Манга Магазин | Найкращі японські комікси</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f5dc 0%, #fff8dc 100%);
+            line-height: 1.6;
+        }
+
+        /* Color Variables */
+        :root {
+            --japanese-red: #d4363a;
+            --japanese-gold: #d4af37;
+            --japanese-dark: #2c1810;
+            --japanese-light: #f5f5dc;
+            --japanese-cherry: #ffb3ba;
+            --japanese-navy: #1f2937;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            box-shadow: 0 4px 12px rgba(212, 54, 58, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--japanese-gold);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--japanese-red), var(--japanese-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cart-btn {
+            background: var(--japanese-red);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .cart-btn:hover {
+            background: #b52d32;
+            transform: translateY(-2px);
+        }
+
+        .cart-count {
+            background: var(--japanese-gold);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            position: absolute;
+            top: -8px;
+            right: -8px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(31, 41, 55, 0.8), rgba(212, 54, 58, 0.8)),
+                        url('https://images.unsplash.com/photo-1519638399535-1b036603ac77?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHxhbmltZXxlbnwwfHx8fDE3NTMxMDExNTZ8MA&ixlib=rb-4.1.0&q=85') center/cover;
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: var(--japanese-cherry);
+        }
+
+        .hero-features {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-feature {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Search Section */
+        .search-section {
+            background: rgba(255,255,255,0.7);
+            padding: 2rem 1rem;
+        }
+
+        .search-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            max-width: 400px;
+            padding: 0.75rem;
+            border: 2px solid var(--japanese-gold);
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--japanese-red);
+        }
+
+        .genre-select {
+            padding: 0.75rem;
+            border: 2px solid var(--japanese-gold);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .catalog {
+            flex: 1;
+        }
+
+        .catalog h2 {
+            color: var(--japanese-navy);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .manga-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .manga-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(212, 54, 58, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .manga-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(212, 54, 58, 0.15);
+        }
+
+        .manga-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            position: relative;
+        }
+
+        .manga-rating {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: var(--japanese-gold);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: bold;
+        }
+
+        .manga-info {
+            padding: 1rem;
+        }
+
+        .manga-title {
+            font-size: 1.125rem;
+            font-weight: bold;
+            color: var(--japanese-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .manga-author {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .manga-description {
+            color: #777;
+            font-size: 0.875rem;
+            margin-bottom: 0.75rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .manga-meta {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .genre-tag {
+            background: var(--japanese-cherry);
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+        }
+
+        .manga-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .manga-price {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--japanese-red);
+        }
+
+        .add-to-cart-btn {
+            background: var(--japanese-red);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart-btn:hover {
+            background: #b52d32;
+            transform: scale(1.05);
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            width: 350px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(212, 54, 58, 0.1);
+            padding: 1.5rem;
+            height: fit-content;
+            display: none;
+        }
+
+        .cart-sidebar.visible {
+            display: block;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .cart-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--japanese-navy);
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .cart-items {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+        }
+
+        .cart-item-image {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+
+        .cart-item-price {
+            color: var(--japanese-red);
+            font-weight: bold;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .quantity-btn {
+            background: #eee;
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-btn.plus {
+            background: var(--japanese-red);
+            color: white;
+        }
+
+        .cart-total {
+            border-top: 2px solid #eee;
+            padding-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .total-label {
+            font-size: 1.125rem;
+            font-weight: bold;
+        }
+
+        .total-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--japanese-red);
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: var(--japanese-gold);
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .checkout-btn:hover {
+            background: #b8941f;
+            transform: translateY(-2px);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        .empty-cart-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--japanese-navy);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--japanese-red), var(--japanese-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer p {
+            color: var(--japanese-cherry);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .footer-copyright {
+            font-size: 0.875rem;
+            color: #aaa;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+
+            .cart-sidebar {
+                width: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                z-index: 200;
+                border-radius: 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .manga-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .manga-card {
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .cart-bounce {
+            animation: bounce 0.6s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">🌸 Манга Магазин</div>
+            <button class="cart-btn" onclick="toggleCart()">
+                🛒 Кошик (<span id="cart-count">0</span>)
+                <span class="cart-count" id="cart-badge">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Світ Манги</h1>
+        <p>Відкрийте для себе найкращу колекцію японських коміксів. 
+           Від класики до новинок - усе в одному місці!</p>
+        <div class="hero-features">
+            <span class="hero-feature">✨ Швидка доставка</span>
+            <span class="hero-feature">📚 Оригінальні видання</span>
+            <span class="hero-feature">🎌 Японська якість</span>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="🔍 Пошук манги..." id="search-input" oninput="filterManga()">
+            <select class="genre-select" id="genre-select" onchange="filterManga()">
+                <option value="Всі">Всі жанри</option>
+                <option value="Пригоди">Пригоди</option>
+                <option value="Драма">Драма</option>
+                <option value="Комедія">Комедія</option>
+                <option value="Екшн">Екшн</option>
+                <option value="Супергерої">Супергерої</option>
+                <option value="Містика">Містика</option>
+            </select>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="catalog">
+            <h2>Каталог Манги (<span id="manga-count">6</span>)</h2>
+            <div class="manga-grid" id="manga-grid">
+                <!-- Manga cards will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Cart Sidebar -->
+        <aside class="cart-sidebar" id="cart-sidebar">
+            <div class="cart-header">
+                <h3 class="cart-title">Кошик</h3>
+                <button class="close-cart" onclick="toggleCart()">✕</button>
+            </div>
+            <div id="cart-content">
+                <div class="empty-cart">
+                    <div class="empty-cart-icon">🛒</div>
+                    <p>Кошик порожній</p>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <h3>🌸 Манга Магазин</h3>
+        <p>Ваш провідник у світі японської культури та коміксів</p>
+        <div class="footer-info">
+            <span>📧 info@mangashop.ua</span>
+            <span>📞 +38 (067) 123-45-67</span>
+            <span>🚚 Доставка по всій Україні</span>
+        </div>
+        <div class="footer-copyright">
+            © 2025 Манга Магазин. Усі права захищено.
+        </div>
+    </footer>
+
+    <script>
+        // Sample manga data
+        const mangaData = [
+            {
+                id: '1',
+                title: 'Наруто',
+                author: 'Масаші Кішимото',
+                price: 299.99,
+                description: 'Епічна історія про молодого ніндзю, який прагне стати Хокаге.',
+                image_url: 'https://images.unsplash.com/photo-1705831156575-a5294d295a31?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwyfHxtYW5nYXxlbnwwfHx8fDE3NTMwMzczNTR8MA&ixlib=rb-4.1.0&q=85',
+                genre: 'Пригоди',
+                volumes: 72,
+                rating: 4.8
+            },
+            {
+                id: '2',
+                title: 'Атака Титанів',
+                author: 'Хайджиме Ісаяма',
+                price: 349.99,
+                description: 'Темна історія про виживання людства проти гігантських титанів.',
+                image_url: 'https://images.unsplash.com/photo-1531501410720-c8d437636169?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwxfHxtYW5nYXxlbnwwfHx8fDE3NTMwMzczNTR8MA&ixlib=rb-4.1.0&q=85',
+                genre: 'Драма',
+                volumes: 34,
+                rating: 4.9
+            },
+            {
+                id: '3',
+                title: 'Односкачний',
+                author: 'Віатьон',
+                price: 279.99,
+                description: 'Комедійна історія про героя, який може перемогти будь-кого одним ударом.',
+                image_url: 'https://images.unsplash.com/photo-1709675577966-6231e5a2ac43?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwzfHxtYW5nYXxlbnwwfHx8fDE3NTMwMzczNTR8MA&ixlib=rb-4.1.0&q=85',
+                genre: 'Комедія',
+                volumes: 29,
+                rating: 4.7
+            },
+            {
+                id: '4',
+                title: 'Демон Слейер',
+                author: 'Коюхару Гобуне',
+                price: 329.99,
+                description: 'Історія про хлопчика, який стає мисливцем на демонів.',
+                image_url: 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwyfHxhbmltZXxlbnwwfHx8fDE3NTMxMDExNTZ8MA&ixlib=rb-4.1.0&q=85',
+                genre: 'Екшн',
+                volumes: 23,
+                rating: 4.9
+            },
+            {
+                id: '5',
+                title: 'Мій Академічний Герой',
+                author: 'Кохей Хорікоші',
+                price: 289.99,
+                description: 'Світ, де майже всі мають суперсили, а головний герой - ні.',
+                image_url: 'https://images.unsplash.com/photo-1601850494422-3cf14624b0b3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwzfHxhbmltZXxlbnwwfHx8fDE3NTMxMDExNTZ8MA&ixlib=rb-4.1.0&q=85',
+                genre: 'Супергерої',
+                volumes: 38,
+                rating: 4.6
+            },
+            {
+                id: '6',
+                title: 'Джуджицу Кайсен',
+                author: 'Геге Акутамі',
+                price: 319.99,
+                description: 'Студенти борються з прокльонами у сучасному Токіо.',
+                image_url: 'https://images.unsplash.com/photo-1519638399535-1b036603ac77?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHxhbmltZXxlbnwwfHx8fDE3NTMxMDExNTZ8MA&ixlib=rb-4.1.0&q=85',
+                genre: 'Містика',
+                volumes: 24,
+                rating: 4.8
+            }
+        ];
+
+        // Cart state
+        let cart = [];
+        let filteredManga = [...mangaData];
+
+        // Initialize the page
+        function init() {
+            renderManga();
+            updateCartDisplay();
+        }
+
+        // Render manga cards
+        function renderManga() {
+            const grid = document.getElementById('manga-grid');
+            grid.innerHTML = '';
+
+            filteredManga.forEach((manga, index) => {
+                const card = document.createElement('div');
+                card.className = 'manga-card';
+                card.style.animationDelay = `${index * 0.1}s`;
+                
+                card.innerHTML = `
+                    <div style="position: relative;">
+                        <img src="${manga.image_url}" alt="${manga.title}" class="manga-image">
+                        <div class="manga-rating">⭐ ${manga.rating}</div>
+                    </div>
+                    <div class="manga-info">
+                        <h3 class="manga-title">${manga.title}</h3>
+                        <p class="manga-author">Автор: ${manga.author}</p>
+                        <p class="manga-description">${manga.description}</p>
+                        <div class="manga-meta">
+                            <span class="genre-tag">${manga.genre}</span>
+                            <span style="color: #666; font-size: 0.875rem;">${manga.volumes} томів</span>
+                        </div>
+                        <div class="manga-footer">
+                            <span class="manga-price">${manga.price.toFixed(2)} ₴</span>
+                            <button class="add-to-cart-btn" onclick="addToCart('${manga.id}')">
+                                Додати 🛒
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+
+            document.getElementById('manga-count').textContent = filteredManga.length;
+        }
+
+        // Filter manga by search term and genre
+        function filterManga() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const selectedGenre = document.getElementById('genre-select').value;
+
+            filteredManga = mangaData.filter(manga => {
+                const matchesSearch = manga.title.toLowerCase().includes(searchTerm) ||
+                                    manga.author.toLowerCase().includes(searchTerm);
+                const matchesGenre = selectedGenre === 'Всі' || manga.genre === selectedGenre;
+                
+                return matchesSearch && matchesGenre;
+            });
+
+            renderManga();
+        }
+
+        // Add item to cart
+        function addToCart(mangaId) {
+            const manga = mangaData.find(m => m.id === mangaId);
+            if (!manga) return;
+
+            const existingItem = cart.find(item => item.id === mangaId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    ...manga,
+                    quantity: 1
+                });
+            }
+
+            updateCartDisplay();
+            
+            // Add bounce animation to cart button
+            const cartBtn = document.querySelector('.cart-btn');
+            cartBtn.classList.add('cart-bounce');
+            setTimeout(() => cartBtn.classList.remove('cart-bounce'), 600);
+        }
+
+        // Remove item from cart
+        function removeFromCart(mangaId) {
+            cart = cart.filter(item => item.id !== mangaId);
+            updateCartDisplay();
+        }
+
+        // Update quantity
+        function updateQuantity(mangaId, newQuantity) {
+            if (newQuantity <= 0) {
+                removeFromCart(mangaId);
+                return;
+            }
+
+            const item = cart.find(item => item.id === mangaId);
+            if (item) {
+                item.quantity = newQuantity;
+                updateCartDisplay();
+            }
+        }
+
+        // Update cart display
+        function updateCartDisplay() {
+            const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const cartTotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            document.getElementById('cart-count').textContent = cartCount;
+            document.getElementById('cart-badge').textContent = cartCount;
+
+            const cartContent = document.getElementById('cart-content');
+
+            if (cart.length === 0) {
+                cartContent.innerHTML = `
+                    <div class="empty-cart">
+                        <div class="empty-cart-icon">🛒</div>
+                        <p>Кошик порожній</p>
+                    </div>
+                `;
+            } else {
+                cartContent.innerHTML = `
+                    <div class="cart-items">
+                        ${cart.map(item => `
+                            <div class="cart-item">
+                                <img src="${item.image_url}" alt="${item.title}" class="cart-item-image">
+                                <div class="cart-item-info">
+                                    <div class="cart-item-title">${item.title}</div>
+                                    <div class="cart-item-price">${item.price.toFixed(2)} ₴</div>
+                                </div>
+                                <div class="cart-item-controls">
+                                    <button class="quantity-btn" onclick="updateQuantity('${item.id}', ${item.quantity - 1})">−</button>
+                                    <span>${item.quantity}</span>
+                                    <button class="quantity-btn plus" onclick="updateQuantity('${item.id}', ${item.quantity + 1})">+</button>
+                                    <button onclick="removeFromCart('${item.id}')" style="margin-left: 0.5rem; background: none; border: none; cursor: pointer;">🗑️</button>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="cart-total">
+                        <span class="total-label">Загалом:</span>
+                        <span class="total-price">${cartTotal.toFixed(2)} ₴</span>
+                    </div>
+                    <button class="checkout-btn" onclick="checkout()">
+                        Оформити замовлення 🎌
+                    </button>
+                `;
+            }
+        }
+
+        // Toggle cart sidebar
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            sidebar.classList.toggle('visible');
+        }
+
+        // Checkout function
+        function checkout() {
+            if (cart.length === 0) return;
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            alert(`Дякуємо за замовлення!\n\nЗагальна сума: ${total.toFixed(2)} ₴\n\nМи зв'яжемося з вами найближчим часом! 🌸`);
+            
+            // Clear cart
+            cart = [];
+            updateCartDisplay();
+            toggleCart();
+        }
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
