@@ -1,4 +1,5 @@
 const mangaData = [
+    // твій масив mangaData тут, без змін
     {
         id: '1',
         title: 'Наруто',
@@ -67,29 +68,19 @@ const mangaData = [
     }
 ];
 
-// Cart state
-let cart = [];
 let filteredManga = [...mangaData];
 
-// Initialize the page
-function init() {
-    renderManga();
-    updateCartDisplay();
-    // Викликаємо нову функцію для плавного появи секцій
-    revealSections();
-}
+// ====== КОШИК LOCALSTORAGE ======
+function getCart() { return JSON.parse(localStorage.getItem('cart')) || []; }
+function setCart(cart) { localStorage.setItem('cart', JSON.stringify(cart)); }
 
-// Render manga cards
+// ====== ВІДМАЛЬОВКА МАНГИ ======
 function renderManga() {
     const grid = document.getElementById('manga-grid');
     grid.innerHTML = '';
-
     filteredManga.forEach((manga, index) => {
         const card = document.createElement('div');
         card.className = 'manga-card';
-        // Прибираємо animationDelay тут, щоб використовувати клас .loaded для анімації
-        // card.style.animationDelay = `${index * 0.1}s`; 
-        
         card.innerHTML = `
             <div style="position: relative;">
                 <img src="${manga.image_url}" alt="${manga.title}" class="manga-image">
@@ -105,94 +96,74 @@ function renderManga() {
                 </div>
                 <div class="manga-footer">
                     <span class="manga-price">${manga.price.toFixed(2)} ₴</span>
-                    <button class="add-to-cart-btn" onclick="addToCart('${manga.id}')">
-                        Додати 🛒
-                    </button>
+            <button class="add-to-cart-btn" onclick="addToCart('${manga.id}')">Додати 🛒</button>
                 </div>
             </div>
         `;
-        
         grid.appendChild(card);
-
-        // Додаємо клас 'loaded' з невеликою затримкою для плавного появи кожної картки
-        setTimeout(() => {
-            card.classList.add('loaded');
-        }, index * 100); // Затримка 100мс між картками
+        setTimeout(() => card.classList.add('loaded'), index * 100);
     });
-
     document.getElementById('manga-count').textContent = filteredManga.length;
 }
 
-// Filter manga by search term and genre
+// ====== ФІЛЬТРАЦІЯ ======
 function filterManga() {
     const searchTerm = document.getElementById('search-input').value.toLowerCase();
     const selectedGenre = document.getElementById('genre-select').value;
-
     filteredManga = mangaData.filter(manga => {
         const matchesSearch = manga.title.toLowerCase().includes(searchTerm) ||
-                                manga.author.toLowerCase().includes(searchTerm);
+                              manga.author.toLowerCase().includes(searchTerm);
         const matchesGenre = selectedGenre === 'Всі' || manga.genre === selectedGenre;
-        
         return matchesSearch && matchesGenre;
     });
-
     renderManga();
 }
 
-// Add item to cart
+// ====== КОШИК + sidebar ======
 function addToCart(mangaId) {
     const manga = mangaData.find(m => m.id === mangaId);
     if (!manga) return;
-
+    let cart = getCart();
     const existingItem = cart.find(item => item.id === mangaId);
-    
     if (existingItem) {
         existingItem.quantity += 1;
     } else {
-        cart.push({
-            ...manga,
-            quantity: 1
-        });
+        cart.push({ ...manga, quantity: 1 });
     }
-
+    setCart(cart);
     updateCartDisplay();
-    
-    // Add bounce animation to cart button
+    showCartSidebar();
+    // bounce
     const cartBtn = document.querySelector('.cart-btn');
-    cartBtn.classList.add('cart-bounce');
-    setTimeout(() => cartBtn.classList.remove('cart-bounce'), 600);
+    if(cartBtn) {
+        cartBtn.classList.add('cart-bounce');
+        setTimeout(() => cartBtn.classList.remove('cart-bounce'), 600);
+    }
 }
-
-// Remove item from cart
 function removeFromCart(mangaId) {
+    let cart = getCart();
     cart = cart.filter(item => item.id !== mangaId);
+    setCart(cart);
     updateCartDisplay();
 }
-
-// Update quantity
 function updateQuantity(mangaId, newQuantity) {
+    let cart = getCart();
     if (newQuantity <= 0) {
-        removeFromCart(mangaId);
-        return;
+        cart = cart.filter(item => item.id !== mangaId);
+    } else {
+        const item = cart.find(item => item.id === mangaId);
+        if (item) item.quantity = newQuantity;
     }
-
-    const item = cart.find(item => item.id === mangaId);
-    if (item) {
-        item.quantity = newQuantity;
-        updateCartDisplay();
-    }
+    setCart(cart);
+    updateCartDisplay();
 }
-
-// Update cart display
 function updateCartDisplay() {
+    let cart = getCart();
     const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-    const cartTotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-
-    document.getElementById('cart-count').textContent = cartCount;
-    document.getElementById('cart-badge').textContent = cartCount;
-
+    const cartBadgeEl = document.getElementById('cart-badge');
+    if (cartBadgeEl) cartBadgeEl.textContent = cartCount;
     const cartContent = document.getElementById('cart-content');
-
+    if (!cartContent) return;
     if (cart.length === 0) {
         cartContent.innerHTML = `
             <div class="empty-cart">
@@ -201,6 +172,7 @@ function updateCartDisplay() {
             </div>
         `;
     } else {
+        const cartTotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
         cartContent.innerHTML = `
             <div class="cart-items">
                 ${cart.map(item => `
@@ -223,33 +195,29 @@ function updateCartDisplay() {
                 <span class="total-label">Загалом:</span>
                 <span class="total-price">${cartTotal.toFixed(2)} ₴</span>
             </div>
-            <button class="checkout-btn" onclick="checkout()">
-                Оформити замовлення 🎌
-            </button>
+            <button class="checkout-btn" onclick="checkout()">Оформити замовлення 🎌</button>
         `;
     }
 }
-
-// Toggle cart sidebar
-function toggleCart() {
-    const sidebar = document.getElementById('cart-sidebar');
-    sidebar.classList.toggle('visible');
+function showCartSidebar() {
+    document.getElementById('cart-sidebar').classList.add('visible');
+    updateCartDisplay();
 }
-
-// Checkout function
+function hideCartSidebar() {
+    document.getElementById('cart-sidebar').classList.remove('visible');
+}
 function checkout() {
+    let cart = getCart();
     if (cart.length === 0) return;
-    
     const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     alert(`Дякуємо за замовлення!\n\nЗагальна сума: ${total.toFixed(2)} ₴\n\nМи зв'яжемося з вами найближчим часом! 🌸`);
-    
-    // Clear cart
     cart = [];
+    setCart(cart);
     updateCartDisplay();
-    toggleCart();
+    hideCartSidebar();
 }
 
-// animation
+// ====== Анімація появи ======
 function revealSections() {
     const sectionsToReveal = [
         document.getElementById('hero-section'),
@@ -257,17 +225,39 @@ function revealSections() {
         document.getElementById('catalog-section'),
         document.getElementById('footer-section')
     ];
-
     sectionsToReveal.forEach((section, index) => {
         if (section) {
             setTimeout(() => {
                 section.classList.remove('hidden');
                 section.classList.add('visible');
-            }, index * 200 + 100); // Затримка 200мс між секціями, плюс 100мс початкова затримка
+            }, index * 200 + 100);
         }
     });
 }
-// end animation
 
-// Initialize on page load
-window.addEventListener('DOMContentLoaded', init);
+// ====== INIT ======
+window.addEventListener('DOMContentLoaded', function() {
+    renderManga();
+    updateCartDisplay();
+    revealSections();
+    // shrink header on scroll
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('.header');
+        if (!header) return;
+        if(window.scrollY > 60) {
+            header.classList.add('shrink');
+        } else {
+            header.classList.remove('shrink');
+        }
+    });
+    // Кошик: відкриття/закриття
+    const cartBtn = document.querySelector('.cart-btn');
+    if(cartBtn) cartBtn.onclick = function() {
+        const sidebar = document.getElementById('cart-sidebar');
+        if(sidebar.classList.contains('visible')) {
+            hideCartSidebar();
+        } else {
+            showCartSidebar();
+        }
+    };
+});
