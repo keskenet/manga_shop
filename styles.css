@@ -32,26 +32,21 @@ body {
     top: 0;
     z-index: 100;
     border-bottom: 2px solid var(--japanese-gold);
+    transition: padding 0.3s, box-shadow 0.3s;
 }
 
 .header.shrink {
     padding: 0.25rem 0;
     box-shadow: 0 2px 6px rgba(212, 54, 58, 0.08);
-    transition: padding 0.3s, box-shadow 0.3s;
 }
 
 .header-content {
-    width: 100vw;
-    max-width: none;
-    margin: 0;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 1rem 2vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 0;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 .logo {
@@ -61,11 +56,11 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    transition: font-size 0.3s;
 }
 
 .header.shrink .logo {
     font-size: 1.3rem;
-    transition: font-size 0.3s;
 }
 
 /* --- Main Navigation Menu --- */
@@ -110,22 +105,22 @@ body {
 @media (max-width: 600px) {
     .header-content {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 0.5rem;
         padding: 0.7rem 2vw;
     }
     .main-nav {
         margin-left: 0;
         width: 100%;
+        text-align: center;
     }
     .nav-list {
         width: 100%;
-        justify-content: flex-start;
+        justify-content: center;
         gap: 0.5rem;
     }
     .nav-list li a {
-        width: 100%;
-        display: block;
+        display: inline-block;
         padding: 0.5rem 0.5rem;
         font-size: 1rem;
     }
@@ -135,22 +130,20 @@ body {
     background: var(--japanese-red);
     color: white;
     border: none;
-    padding: 0.75rem 1.5rem;
+    padding: 0.5rem 1.5rem;
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
     transition: all 0.3s ease;
     position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .cart-btn:hover {
     background: #b52d32;
     transform: translateY(-2px);
-}
-
-.cart-btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.95rem;
 }
 
 .cart-count {
@@ -171,7 +164,7 @@ body {
 /* Hero Section */
 .hero {
     background: linear-gradient(rgba(31, 41, 55, 0.8), rgba(212, 54, 58, 0.8)),
-                url('https://images.unsplash.com/photo-1519638399535-1b036603ac77?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHxhbmltZXxlbnwwfHx8fDE3NTMxMDExNTZ8MA&ixlib=rb-4.1.0&q=85') center/cover;
+                url('https://images.unsplash.com/photo-1519638399535-1b036603ac77?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwyfHxhbmltZXxlbnwwfHx8fDE3NTMxMDExNTZ8MA&ixlib=rb-4.1.0&q=85') center/cover;
     color: white;
     text-align: center;
     padding: 4rem 1rem;
@@ -246,46 +239,47 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem 1rem;
-    display: flex;
-    gap: 2rem;
 }
 
 .catalog {
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    position: relative;
-    gap: 2rem;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
-.catalog h2 {
-    color: var(--japanese-navy);
+.catalog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 1.5rem;
+}
+
+.catalog-header h2 {
+    color: var(--japanese-navy);
     font-size: 1.5rem;
 }
 
+.catalog-content {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
 .manga-grid {
-    flex: 1 1 0%;
+    flex: 1;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
 }
 
-/* Оптимізація: manga-card не має початкової анімації, її стан задає JS */
 .manga-card {
     background: white;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 8px 24px rgba(212, 54, 58, 0.1);
     transition: all 0.3s ease;
-    /* transition для анімації появи при додаванні класу .loaded */
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out; 
     opacity: 0;
     transform: translateY(30px) scale(0.97);
-    transition: 
-        opacity 0.5s cubic-bezier(.4,0,.2,1),
-        transform 0.5s cubic-bezier(.4,0,.2,1),
-        box-shadow 0.3s;
 }
 
 .manga-card:hover {
@@ -297,7 +291,6 @@ body {
     opacity: 1;
     transform: translateY(0) scale(1);
 }
-
 
 .manga-image {
     width: 100%;
@@ -385,45 +378,23 @@ body {
     transform: scale(1.05);
 }
 
-
-/* Cart Sidebar (fixed right, follows scroll) */
+/* Cart Sidebar */
 .cart-sidebar {
-    width: 340px;
+    width: 300px;
     background: white;
-    border-radius: 12px 0 0 12px;
+    border-radius: 12px;
     box-shadow: 0 8px 24px rgba(212, 54, 58, 0.13);
     padding: 1.5rem;
-    min-height: 120px;
-    max-height: 80vh;
-    position: fixed;
-    top: 80px;
-    right: 0;
-    margin-left: 0;
-    display: none;
-    transition: 
-        opacity 0.4s cubic-bezier(.4,0,.2,1),
-        transform 0.4s cubic-bezier(.4,0,.2,1);
-    transform: translateX(100%) scale(0.98);
-    opacity: 0;
-    z-index: 200;
-    overflow-y: auto;
     flex-shrink: 0;
-}
-
-.cart-sidebar.visible {
-    display: block;
-    transform: translateX(0) scale(1);
+    transition: 
+        transform 0.4s cubic-bezier(.4,0,.2,1),
+        opacity 0.4s cubic-bezier(.4,0,.2,1);
+    transform: translateX(0);
     opacity: 1;
-    pointer-events: auto;
 }
 
-@media (max-width: 900px) {
-    .cart-sidebar {
-        width: 100vw;
-        max-width: 100vw;
-        border-radius: 0 0 12px 12px;
-        top: 60px;
-    }
+.cart-sidebar:not(.visible) {
+    display: none;
 }
 
 .cart-header {
@@ -440,6 +411,7 @@ body {
 }
 
 .close-cart {
+    display: none;
     background: none;
     border: none;
     font-size: 1.25rem;
@@ -460,9 +432,6 @@ body {
     border: 1px solid #eee;
     border-radius: 8px;
     margin-bottom: 0.75rem;
-    opacity: 0;
-    transform: translateX(30px) scale(0.97);
-    transition: opacity 0.5s cubic-bezier(.4,0,.2,1), transform 0.5s cubic-bezier(.4,0,.2,1);
 }
 
 .cart-item-image {
@@ -538,11 +507,7 @@ body {
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
-    transition: 
-        background 0.3s cubic-bezier(.4,0,.2,1),
-        color 0.3s cubic-bezier(.4,0,.2,1),
-        transform 0.2s cubic-bezier(.4,0,.2,1),
-        box-shadow 0.2s cubic-bezier(.4,0,.2,1);
+    transition: background 0.3s;
 }
 
 .checkout-btn:hover {
@@ -598,66 +563,88 @@ body {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-    .main-content {
-        flex-direction: column;
-    }
-    .catalog {
-        position: static;
-    }
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-    .manga-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
 @media (max-width: 1100px) {
-    .catalog {
+    .catalog-content {
         flex-direction: column;
-        gap: 0;
-    }
-    .cart-sidebar {
-        width: 100vw;
-        max-width: 100vw;
-        position: sticky;
-        top: 60px;
-        border-radius: 0 0 12px 12px;
-        margin-left: 0;
     }
     .manga-grid {
         grid-template-columns: 1fr 1fr;
     }
+    .cart-sidebar {
+        width: 100%;
+        margin-top: 1.5rem;
+    }
 }
 
-/* Анімації */
+@media (max-width: 768px) {
+    .manga-grid {
+        grid-template-columns: 1fr;
+    }
+    .cart-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        padding-top: 4rem;
+        z-index: 999;
+        transform: translateX(100%);
+        display: block;
+        opacity: 0;
+    }
+    .cart-sidebar.visible {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    .close-cart {
+        display: block;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        z-index: 1000;
+    }
+    .cart-toggle-btn {
+        display: block;
+        background: var(--japanese-gold);
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+}
 
-/* Клас для елементів, які спочатку приховані, а потім плавно з'являються */
+@media (max-width: 600px) {
+    .header-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .main-nav, .cart-btn {
+        display: none;
+    }
+    .catalog-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}
+
+
+/* Анімації */
 .hidden {
     opacity: 0;
     transform: translateY(40px) scale(0.98);
-    will-change: opacity, transform;
     transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
 }
 
-/* Клас, який додається JavaScript для активації анімації */
 .visible {
     opacity: 1;
     transform: translateY(0) scale(1);
 }
 
-/* Підказки will-change для основних секцій */
-.hero, .search-section, .catalog, .footer {
-    will-change: opacity, transform;
-}
-
-/* Анімація відскоку для кнопки кошика */
-@keyframes bounce {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-}
-
-.cart-bounce {
-    animation: bounce 0.6s ease-in-out;
+.cart-toggle-btn {
+    display: none;
 }

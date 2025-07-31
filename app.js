@@ -1,5 +1,4 @@
 const mangaData = [
-    // твій масив mangaData тут, без змін
     {
         id: '1',
         title: 'Наруто',
@@ -77,6 +76,7 @@ function setCart(cart) { localStorage.setItem('cart', JSON.stringify(cart)); }
 // ====== ВІДМАЛЬОВКА МАНГИ ======
 function renderManga() {
     const grid = document.getElementById('manga-grid');
+    if (!grid) return;
     grid.innerHTML = '';
     filteredManga.forEach((manga, index) => {
         const card = document.createElement('div');
@@ -96,14 +96,15 @@ function renderManga() {
                 </div>
                 <div class="manga-footer">
                     <span class="manga-price">${manga.price.toFixed(2)} ₴</span>
-            <button class="add-to-cart-btn" onclick="addToCart('${manga.id}')">Додати 🛒</button>
+                    <button class="add-to-cart-btn" onclick="addToCart('${manga.id}')">Додати 🛒</button>
                 </div>
             </div>
         `;
         grid.appendChild(card);
         setTimeout(() => card.classList.add('loaded'), index * 100);
     });
-    document.getElementById('manga-count').textContent = filteredManga.length;
+    const mangaCountEl = document.getElementById('manga-count');
+    if (mangaCountEl) mangaCountEl.textContent = filteredManga.length;
 }
 
 // ====== ФІЛЬТРАЦІЯ ======
@@ -133,7 +134,6 @@ function addToCart(mangaId) {
     setCart(cart);
     updateCartDisplay();
     showCartSidebar();
-    // bounce
     const cartBtn = document.querySelector('.cart-btn');
     if(cartBtn) {
         cartBtn.classList.add('cart-bounce');
@@ -199,13 +199,22 @@ function updateCartDisplay() {
         `;
     }
 }
+
 function showCartSidebar() {
-    document.getElementById('cart-sidebar').classList.add('visible');
+    const sidebar = document.getElementById('cart-sidebar');
+    if (sidebar) {
+        sidebar.classList.add('visible');
+    }
     updateCartDisplay();
 }
+
 function hideCartSidebar() {
-    document.getElementById('cart-sidebar').classList.remove('visible');
+    const sidebar = document.getElementById('cart-sidebar');
+    if (sidebar) {
+        sidebar.classList.remove('visible');
+    }
 }
+
 function checkout() {
     let cart = getCart();
     if (cart.length === 0) return;
@@ -240,7 +249,6 @@ window.addEventListener('DOMContentLoaded', function() {
     renderManga();
     updateCartDisplay();
     revealSections();
-    // shrink header on scroll
     window.addEventListener('scroll', function() {
         const header = document.querySelector('.header');
         if (!header) return;
@@ -250,14 +258,4 @@ window.addEventListener('DOMContentLoaded', function() {
             header.classList.remove('shrink');
         }
     });
-    // Кошик: відкриття/закриття
-    const cartBtn = document.querySelector('.cart-btn');
-    if(cartBtn) cartBtn.onclick = function() {
-        const sidebar = document.getElementById('cart-sidebar');
-        if(sidebar.classList.contains('visible')) {
-            hideCartSidebar();
-        } else {
-            showCartSidebar();
-        }
-    };
 });

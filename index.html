@@ -18,8 +18,8 @@
                     <li><a href="#ramen">Рамен</a></li>
                 </ul>
             </nav>
-            <button class="cart-btn" onclick="toggleCart()">
-                🛒 Кошик (<span id="cart-count">0</span>)
+            <button class="cart-btn" onclick="showCartSidebar()">
+                🛒 Кошик
                 <span class="cart-count" id="cart-badge">0</span>
             </button>
         </div>
@@ -27,7 +27,7 @@
 
     <section class="hero hidden" id="hero-section">
         <h1>Світ Манги</h1>
-        <p>Відкрийте для себе найкращу колекцію японських коміксів. 
+        <p>Відкрийте для себе найкращу колекцію японських коміксів.
             Від класики до новинок - усе в одному місці!</p>
         <div class="hero-features">
             <span class="hero-feature">✨ Швидка доставка</span>
@@ -53,23 +53,27 @@
 
     <main class="main-content">
         <div class="catalog hidden" id="catalog-section">
-            <h2>Каталог Манги (<span id="manga-count">6</span>)</h2>
-            <div class="manga-grid" id="manga-grid">
-                </div>
-        </div>
+            <div class="catalog-header">
+                 <h2>Каталог Манги (<span id="manga-count">6</span>)</h2>
+                 <button class="cart-toggle-btn" onclick="showCartSidebar()">🛒 Кошик</button>
+            </div>
 
-        <aside class="cart-sidebar" id="cart-sidebar">
-            <div class="cart-header">
-                <h3 class="cart-title">Кошик</h3>
-                <button class="close-cart" onclick="toggleCart()">✕</button>
+            <div class="catalog-content">
+                <div class="manga-grid" id="manga-grid"></div>
+                <aside class="cart-sidebar" id="cart-sidebar">
+                    <div class="cart-header">
+                        <h3 class="cart-title">Кошик</h3>
+                        <button class="close-cart" onclick="hideCartSidebar()">✕</button>
+                    </div>
+                    <div id="cart-content">
+                        <div class="empty-cart">
+                            <div class="empty-cart-icon">🛒</div>
+                            <p>Кошик порожній</p>
+                        </div>
+                    </div>
+                </aside>
             </div>
-            <div id="cart-content">
-                <div class="empty-cart">
-                    <div class="empty-cart-icon">🛒</div>
-                    <p>Кошик порожній</p>
-                </div>
-            </div>
-        </aside>
+        </div>
     </main>
 
     <footer class="footer hidden" id="footer-section">
