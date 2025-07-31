@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="header-content">
             <div class="logo">🌸 Манга Магазин</div>
@@ -19,11 +18,10 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero hidden" id="hero-section">
         <h1>Світ Манги</h1>
         <p>Відкрийте для себе найкращу колекцію японських коміксів. 
-           Від класики до новинок - усе в одному місці!</p>
+            Від класики до новинок - усе в одному місці!</p>
         <div class="hero-features">
             <span class="hero-feature">✨ Швидка доставка</span>
             <span class="hero-feature">📚 Оригінальні видання</span>
@@ -31,8 +29,7 @@
         </div>
     </section>
 
-    <!-- Search Section -->
-    <section class="search-section">
+    <section class="search-section hidden" id="search-section">
         <div class="search-container">
             <input type="text" class="search-input" placeholder="🔍 Пошук манги..." id="search-input" oninput="filterManga()">
             <select class="genre-select" id="genre-select" onchange="filterManga()">
@@ -47,16 +44,13 @@
         </div>
     </section>
 
-    <!-- Main Content -->
     <main class="main-content">
-        <div class="catalog">
+        <div class="catalog hidden" id="catalog-section">
             <h2>Каталог Манги (<span id="manga-count">6</span>)</h2>
             <div class="manga-grid" id="manga-grid">
-                <!-- Manga cards will be populated by JavaScript -->
-            </div>
+                </div>
         </div>
 
-        <!-- Cart Sidebar -->
         <aside class="cart-sidebar" id="cart-sidebar">
             <div class="cart-header">
                 <h3 class="cart-title">Кошик</h3>
@@ -71,8 +65,7 @@
         </aside>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer hidden" id="footer-section">
         <h3>🌸 Манга Магазин</h3>
         <p>Ваш провідник у світі японської культури та коміксів</p>
         <div class="footer-info">

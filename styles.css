@@ -1,4 +1,4 @@
-
+/* Reset та базові стилі */
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +11,7 @@ body {
     line-height: 1.6;
 }
 
-/* Color Variables */
+/* Змінні кольорів */
 :root {
     --japanese-red: #d4363a;
     --japanese-gold: #d4af37;
@@ -179,18 +179,27 @@ body {
     gap: 1.5rem;
 }
 
+/* Оптимізація: manga-card не має початкової анімації, її стан задає JS */
 .manga-card {
     background: white;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 8px 24px rgba(212, 54, 58, 0.1);
     transition: all 0.3s ease;
+    /* transition для анімації появи при додаванні класу .loaded */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out; 
 }
 
 .manga-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 32px rgba(212, 54, 58, 0.15);
 }
+
+.manga-card.loaded {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 
 .manga-image {
     width: 100%;
@@ -285,11 +294,17 @@ body {
     box-shadow: 0 8px 24px rgba(212, 54, 58, 0.1);
     padding: 1.5rem;
     height: fit-content;
-    display: none;
+    display: none; /* Приховуємо за замовчуванням */
+    /* Додаємо transition для плавного появи */
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    transform: translateX(100%); /* Початкова позиція за межами екрану */
+    opacity: 0;
 }
 
 .cart-sidebar.visible {
-    display: block;
+    display: block; /* Робимо видимим */
+    transform: translateX(0); /* Зсуваємо на екран */
+    opacity: 1;
 }
 
 .cart-header {
@@ -481,22 +496,28 @@ body {
     }
 }
 
-/* Animations */
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Анімації */
+
+/* Клас для елементів, які спочатку приховані, а потім плавно з'являються */
+.hidden {
+    opacity: 0;
+    transform: translateY(20px); /* Починаємо трохи нижче */
+    will-change: opacity, transform; /* Підказка браузеру для оптимізації */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Плавний перехід */
 }
 
-.manga-card {
-    animation: slideIn 0.5s ease-out;
+/* Клас, який додається JavaScript для активації анімації */
+.visible {
+    opacity: 1;
+    transform: translateY(0); /* Завершуємо у вихідній позиції */
 }
 
+/* Підказки will-change для основних секцій */
+.hero, .search-section, .catalog, .footer {
+    will-change: opacity, transform;
+}
+
+/* Анімація відскоку для кнопки кошика */
 @keyframes bounce {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.2); }

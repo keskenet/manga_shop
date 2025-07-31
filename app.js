@@ -1,4 +1,3 @@
-
 const mangaData = [
     {
         id: '1',
@@ -76,6 +75,8 @@ let filteredManga = [...mangaData];
 function init() {
     renderManga();
     updateCartDisplay();
+    // Викликаємо нову функцію для плавного появи секцій
+    revealSections();
 }
 
 // Render manga cards
@@ -86,7 +87,8 @@ function renderManga() {
     filteredManga.forEach((manga, index) => {
         const card = document.createElement('div');
         card.className = 'manga-card';
-        card.style.animationDelay = `${index * 0.1}s`;
+        // Прибираємо animationDelay тут, щоб використовувати клас .loaded для анімації
+        // card.style.animationDelay = `${index * 0.1}s`; 
         
         card.innerHTML = `
             <div style="position: relative;">
@@ -111,6 +113,11 @@ function renderManga() {
         `;
         
         grid.appendChild(card);
+
+        // Додаємо клас 'loaded' з невеликою затримкою для плавного появи кожної картки
+        setTimeout(() => {
+            card.classList.add('loaded');
+        }, index * 100); // Затримка 100мс між картками
     });
 
     document.getElementById('manga-count').textContent = filteredManga.length;
@@ -123,7 +130,7 @@ function filterManga() {
 
     filteredManga = mangaData.filter(manga => {
         const matchesSearch = manga.title.toLowerCase().includes(searchTerm) ||
-                              manga.author.toLowerCase().includes(searchTerm);
+                                manga.author.toLowerCase().includes(searchTerm);
         const matchesGenre = selectedGenre === 'Всі' || manga.genre === selectedGenre;
         
         return matchesSearch && matchesGenre;
@@ -241,6 +248,26 @@ function checkout() {
     updateCartDisplay();
     toggleCart();
 }
+
+// animation
+function revealSections() {
+    const sectionsToReveal = [
+        document.getElementById('hero-section'),
+        document.getElementById('search-section'),
+        document.getElementById('catalog-section'),
+        document.getElementById('footer-section')
+    ];
+
+    sectionsToReveal.forEach((section, index) => {
+        if (section) {
+            setTimeout(() => {
+                section.classList.remove('hidden');
+                section.classList.add('visible');
+            }, index * 200 + 100); // Затримка 200мс між секціями, плюс 100мс початкова затримка
+        }
+    });
+}
+// end animation
 
 // Initialize on page load
 window.addEventListener('DOMContentLoaded', init);
