@@ -3,89 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Манга Магазин | Найкращі японські комікси</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>Sakura Shop | Сучасний магазин манги</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/scrollreveal"></script>
 </head>
 <body>
+
     <header class="header">
-        <div class="header-content">
-            <div class="logo">🌸 Манга Магазин</div>
+        <div class="header-container">
+            <a href="#" class="logo">🌸 Sakura Shop</a>
             <nav class="main-nav">
-                <ul class="nav-list">
-                    <li><a href="#about">Про магазин</a></li>
-                    <li><a href="#accessories">Аксесуари</a></li>
-                    <li><a href="#ramen">Рамен</a></li>
+                <ul>
+                    <li><a href="#catalog-section">Каталог</a></li>
+                    <li><a href="#about-us-section">Про магазин</a></li>
+                    <li><a href="#accessories-section">Аксесуари</a></li>
+                    <li><a href="#ramen-section">Рамен</a></li>
                 </ul>
             </nav>
-            <button class="cart-btn" onclick="showCartSidebar()">
-                🛒 Кошик
+            <button class="cart-toggle-btn" onclick="showCartSidebar()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
                 <span class="cart-count" id="cart-badge">0</span>
             </button>
         </div>
     </header>
 
-    <section class="hero hidden" id="hero-section">
-        <h1>Світ Манги</h1>
-        <p>Відкрийте для себе найкращу колекцію японських коміксів.
-            Від класики до новинок - усе в одному місці!</p>
-        <div class="hero-features">
-            <span class="hero-feature">✨ Швидка доставка</span>
-            <span class="hero-feature">📚 Оригінальні видання</span>
-            <span class="hero-feature">🎌 Японська якість</span>
-        </div>
-    </section>
-
-    <section class="search-section hidden" id="search-section">
-        <div class="search-container">
-            <input type="text" class="search-input" placeholder="🔍 Пошук манги..." id="search-input" oninput="filterManga()">
-            <select class="genre-select" id="genre-select" onchange="filterManga()">
-                <option value="Всі">Всі жанри</option>
-                <option value="Пригоди">Пригоди</option>
-                <option value="Драма">Драма</option>
-                <option value="Комедія">Комедія</option>
-                <option value="Екшн">Екшн</option>
-                <option value="Супергерої">Супергерої</option>
-                <option value="Містика">Містика</option>
-            </select>
+    <section class="hero-section" id="hero-section">
+        <div class="hero-text-content">
+            <h1>Відкрийте для себе світ японської манги</h1>
+            <p>Ексклюзивні видання, швидка доставка та незабутні історії</p>
+            <a href="#catalog-section" class="cta-button">Перейти до каталогу</a>
         </div>
     </section>
 
     <main class="main-content">
-        <div class="catalog hidden" id="catalog-section">
-            <div class="catalog-header">
-                 <h2>Каталог Манги (<span id="manga-count">6</span>)</h2>
-                 <button class="cart-toggle-btn" onclick="showCartSidebar()">🛒 Кошик</button>
+        <section class="catalog-section" id="catalog-section">
+            <h2 class="section-title">Каталог Манги</h2>
+            <div class="search-and-filter-container">
+                <input type="text" class="search-input" placeholder="🔍 Пошук..." id="search-input" oninput="filterManga()">
+                <div class="filter-dropdown">
+                    <select class="genre-select" id="genre-select" onchange="filterManga()">
+                        <option value="Всі">Всі жанри</option>
+                        <option value="Пригоди">Пригоди</option>
+                        <option value="Драма">Драма</option>
+                        <option value="Комедія">Комедія</option>
+                        <option value="Екшн">Екшн</option>
+                        <option value="Супергерої">Супергерої</option>
+                        <option value="Містика">Містика</option>
+                    </select>
+                </div>
             </div>
+            <div class="manga-grid" id="manga-grid"></div>
+        </section>
 
-            <div class="catalog-content">
-                <div class="manga-grid" id="manga-grid"></div>
-                <aside class="cart-sidebar" id="cart-sidebar">
-                    <div class="cart-header">
-                        <h3 class="cart-title">Кошик</h3>
-                        <button class="close-cart" onclick="hideCartSidebar()">✕</button>
-                    </div>
-                    <div id="cart-content">
-                        <div class="empty-cart">
-                            <div class="empty-cart-icon">🛒</div>
-                            <p>Кошик порожній</p>
-                        </div>
-                    </div>
-                </aside>
+        <section class="info-section" id="about-us-section">
+            <div class="info-content reveal">
+                <img src="https://images.unsplash.com/photo-1544976729-1981449b4931?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHw3fHxqYXBwYW4lMjBtYW5nYXxlbnwwfHx8fDE3NTMxNjU5Nzh8MA&ixlib=rb-4.1.0&q=85" alt="Про наш магазин" class="info-image">
+                <div class="info-text">
+                    <h2 class="section-title">Про наш магазин</h2>
+                    <p>Sakura Shop — це не просто магазин, це портал у світ японської культури. Ми пристрасно любимо мангу і прагнемо поділитися цим захопленням з вами, пропонуючи тільки найкращі та найексклюзивніші видання.</p>
+                    <p>Кожен том — це витвір мистецтва, і ми гарантуємо його оригінальність та ідеальну якість. Приєднуйтесь до нашої спільноти шанувальників манги!</p>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <section class="info-section alternate" id="accessories-section">
+            <div class="info-content reveal">
+                <div class="info-text">
+                    <h2 class="section-title">Аксесуари для шанувальників</h2>
+                    <p>Доповніть свою колекцію ексклюзивними аксесуарами. У нас ви знайдете фігурки улюблених персонажів, плакати, брелоки та багато іншого. Зробіть свій простір унікальним!</p>
+                </div>
+                <img src="https://images.unsplash.com/photo-1616782299837-1e5f8f553a1a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHw3fHxhbmltZSUyMGFjY2Vzc29yaWVzfGVufDB8fHx8MTc1MzE2NTk5OXww&ixlib=rb-4.1.0&q=85" alt="Аксесуари" class="info-image">
+            </div>
+        </section>
+
+        <section class="info-section" id="ramen-section">
+            <div class="info-content reveal">
+                <img src="https://images.unsplash.com/photo-1627889104082-f584e0310896?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHw4fHxqYXBwYW4lMjByYW1lbnxlbnwwfHx8fDE3NTMxNjYwMDB8MA&ixlib=rb-4.1.0&q=85" alt="Японський рамен" class="info-image">
+                <div class="info-text">
+                    <h2 class="section-title">Справжній японський рамен</h2>
+                    <p>Пориньте в атмосферу Японії не тільки через мангу, але й через її кухню. Ми пропонуємо добірку автентичного японського рамену, щоб ви могли насолоджуватися улюбленим хобі разом із смачними стравами.</p>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer class="footer hidden" id="footer-section">
-        <h3>🌸 Манга Магазин</h3>
-        <p>Ваш провідник у світі японської культури та коміксів</p>
-        <div class="footer-info">
-            <span>📧 info@mangashop.ua</span>
-            <span>📞 +38 (067) 123-45-67</span>
-            <span>🚚 Доставка по всій Україні</span>
+    <aside class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Ваш кошик</h3>
+            <button class="close-cart-btn" onclick="hideCartSidebar()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
         </div>
-        <div class="footer-copyright">
-            © 2025 Манга Магазин. Усі права захищено.
+        <div id="cart-content">
+            <div class="empty-cart">
+                <p>Кошик порожній</p>
+            </div>
+        </div>
+    </aside>
+
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-logo">🌸 Sakura Shop</div>
+            <div class="footer-links">
+                <a href="#">Умови користування</a>
+                <a href="#">Політика конфіденційності</a>
+                <a href="#">Доставка і оплата</a>
+            </div>
+            <div class="footer-social">
+                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Sakura Shop. Всі права захищено.</p>
         </div>
     </footer>
 
