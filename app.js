@@ -71,7 +71,7 @@ const mangaData = [
         author: 'Ейічіро Ода',
         price: 399.99,
         description: 'Епічна пригода молодого пірата Манкі Д. Луффі в пошуках скарбів.',
-        image_url: 'https://i.imgur.com/gK9qN7f.jpg',
+        image_url: 'https://m.media-amazon.com/images/M/MV5BMTNjNGU4NTUtYmVjMy00YjRiLTkxMWUtNzZkMDNiYjZhNmViXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg',
         genre: 'Пригоди',
         volumes: 111,
         rating: 5.0
@@ -82,7 +82,7 @@ const mangaData = [
         author: 'Акіра Торіяма',
         price: 249.99,
         description: 'Класична історія про хлопчика на ім\'я Гоку, який шукає Драконячі Кулі.',
-        image_url: 'https://i.imgur.com/k4QY5eZ.jpg',
+        image_url: 'https://m.media-amazon.com/images/M/MV5BMGQ0ZWE4NDYtYWY0Mi00MjE0LWI1MzctZDA1NGExYzE3N2FiXkEyXkFqcGc@._V1_.jpg',
         genre: 'Екшн',
         volumes: 42,
         rating: 4.9
@@ -93,7 +93,7 @@ const mangaData = [
         author: 'Цугумі Оба',
         price: 279.99,
         description: 'Захопливий трилер про учня, який знаходить зошит смерті.',
-        image_url: 'https://i.imgur.com/qR8Wf7g.jpg',
+        image_url: 'https://upload.wikimedia.org/wikipedia/en/thumb/7/72/Death_Note_Characters.jpg/250px-Death_Note_Characters.jpg',
         genre: 'Містика',
         volumes: 12,
         rating: 4.9
@@ -101,6 +101,16 @@ const mangaData = [
 ];
 
 let filteredManga = [...mangaData];
+const mangaGrid = document.getElementById('manga-grid');
+const searchInput = document.getElementById('search-input');
+const genreSelect = document.getElementById('genre-select');
+const cartToggleBtn = document.getElementById('cart-toggle-btn');
+const cartSidebar = document.getElementById('cart-sidebar');
+const closeCartBtn = document.getElementById('close-cart-btn');
+const cartContent = document.getElementById('cart-content');
+const cartBadge = document.getElementById('cart-badge');
+const header = document.getElementById('header');
+const scrollToTopBtn = document.getElementById('scrollToTopBtn');
 
 // ====== КОШИК LOCALSTORAGE ======
 function getCart() { return JSON.parse(localStorage.getItem('cart')) || []; }
@@ -108,12 +118,17 @@ function setCart(cart) { localStorage.setItem('cart', JSON.stringify(cart)); }
 
 // ====== ВІДМАЛЬОВКА МАНГИ ======
 function renderManga() {
-    const grid = document.getElementById('manga-grid');
-    if (!grid) return;
-    grid.innerHTML = '';
+    if (!mangaGrid) return;
+    mangaGrid.innerHTML = '';
+    
+    if (filteredManga.length === 0) {
+        mangaGrid.innerHTML = '<p style="text-align:center; padding: 2rem; color: #777;">На жаль, за вашим запитом нічого не знайдено.</p>';
+        return;
+    }
+
     filteredManga.forEach(manga => {
         const card = document.createElement('div');
-        card.className = 'manga-card'; 
+        card.className = 'manga-card reveal';
         card.innerHTML = `
             <div class="manga-image-container">
                 <img src="${manga.image_url}" alt="${manga.title}" class="manga-image">
@@ -127,20 +142,21 @@ function renderManga() {
                 <p class="manga-description">${manga.description}</p>
                 <div class="manga-footer">
                     <span class="manga-price">${manga.price.toFixed(2)} ₴</span>
-                    <button class="add-to-cart-btn" onclick="addToCart('${manga.id}')">Додати</button>
+                    <button class="add-to-cart-btn" data-id="${manga.id}">Додати</button>
                 </div>
             </div>
         `;
-        grid.appendChild(card);
+        mangaGrid.appendChild(card);
     });
-    const mangaCountEl = document.getElementById('manga-count');
-    if (mangaCountEl) mangaCountEl.textContent = filteredManga.length;
+
+    // Після рендерингу, ініціюємо анімацію
+    initAnimations();
 }
 
 // ====== ФІЛЬТРАЦІЯ ======
 function filterManga() {
-    const searchTerm = document.getElementById('search-input').value.toLowerCase();
-    const selectedGenre = document.getElementById('genre-select').value;
+    const searchTerm = searchInput.value.toLowerCase();
+    const selectedGenre = genreSelect.value;
     filteredManga = mangaData.filter(manga => {
         const matchesSearch = manga.title.toLowerCase().includes(searchTerm) ||
                               manga.author.toLowerCase().includes(searchTerm);
@@ -188,9 +204,7 @@ function updateQuantity(mangaId, newQuantity) {
 function updateCartDisplay() {
     let cart = getCart();
     const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-    const cartBadgeEl = document.getElementById('cart-badge');
-    if (cartBadgeEl) cartBadgeEl.textContent = cartCount;
-    const cartContent = document.getElementById('cart-content');
+    if (cartBadge) cartBadge.textContent = cartCount;
     if (!cartContent) return;
 
     if (cart.length === 0) {
@@ -212,10 +226,10 @@ function updateCartDisplay() {
                             <p class="cart-item-price">${item.price.toFixed(2)} ₴</p>
                         </div>
                         <div class="cart-item-controls">
-                            <button class="quantity-btn" onclick="updateQuantity('${item.id}', ${item.quantity - 1})">−</button>
+                            <button class="quantity-btn" data-id="${item.id}" data-action="decrease">−</button>
                             <span>${item.quantity}</span>
-                            <button class="quantity-btn" onclick="updateQuantity('${item.id}', ${item.quantity + 1})">+</button>
-                            <button class="remove-item-btn" onclick="removeFromCart('${item.id}')">
+                            <button class="quantity-btn" data-id="${item.id}" data-action="increase">+</button>
+                            <button class="remove-item-btn" data-id="${item.id}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                             </button>
                         </div>
@@ -227,26 +241,22 @@ function updateCartDisplay() {
                     <span>Загалом:</span>
                     <span>${cartTotal.toFixed(2)} ₴</span>
                 </div>
-                <button class="checkout-btn" onclick="checkout()">Оформити замовлення</button>
+                <button class="checkout-btn">Оформити замовлення</button>
             </div>
         `;
     }
 }
 
 function showCartSidebar() {
-    const sidebar = document.getElementById('cart-sidebar');
-    if (sidebar) {
-        sidebar.classList.add('visible');
-        document.body.style.overflow = 'hidden';
+    if (cartSidebar) {
+        cartSidebar.classList.add('visible');
     }
     updateCartDisplay();
 }
 
 function hideCartSidebar() {
-    const sidebar = document.getElementById('cart-sidebar');
-    if (sidebar) {
-        sidebar.classList.remove('visible');
-        document.body.style.overflow = 'auto';
+    if (cartSidebar) {
+        cartSidebar.classList.remove('visible');
     }
 }
 
@@ -263,19 +273,93 @@ function checkout() {
     hideCartSidebar();
 }
 
-// ====== INIT ======
-window.addEventListener('DOMContentLoaded', function() {
+// ====== ІНІЦІАЛІЗАЦІЯ І ОБРОБНИКИ ПОДІЙ ======
+function init() {
     renderManga();
     updateCartDisplay();
-    
-    ScrollReveal({
-        distance: '40px',
-        duration: 1200,
-        easing: 'cubic-bezier(.2, .4, .2, 1)',
-        reset: false,
+    initEventListeners();
+    initAnimations();
+}
+
+function initEventListeners() {
+    if (searchInput) searchInput.addEventListener('input', filterManga);
+    if (genreSelect) genreSelect.addEventListener('change', filterManga);
+    if (cartToggleBtn) cartToggleBtn.addEventListener('click', showCartSidebar);
+    if (closeCartBtn) closeCartBtn.addEventListener('click', hideCartSidebar);
+    if (mangaGrid) {
+        mangaGrid.addEventListener('click', (e) => {
+            const btn = e.target.closest('.add-to-cart-btn');
+            if (btn) {
+                addToCart(btn.dataset.id);
+            }
+        });
+    }
+
+    if (cartContent) {
+        cartContent.addEventListener('click', (e) => {
+            const btn = e.target.closest('button');
+            if (!btn) return;
+            const id = btn.dataset.id;
+            const action = btn.dataset.action;
+            
+            if (btn.classList.contains('remove-item-btn')) {
+                removeFromCart(id);
+            } else if (action === 'increase') {
+                const item = getCart().find(item => item.id === id);
+                if (item) updateQuantity(id, item.quantity + 1);
+            } else if (action === 'decrease') {
+                const item = getCart().find(item => item.id === id);
+                if (item) updateQuantity(id, item.quantity - 1);
+            } else if (btn.classList.contains('checkout-btn')) {
+                checkout();
+            }
+        });
+    }
+
+    // Header scroll logic
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+
+        // Scroll to top button logic
+        if (window.scrollY > 300) {
+            scrollToTopBtn.classList.add('visible');
+        } else {
+            scrollToTopBtn.classList.remove('visible');
+        }
     });
 
-    ScrollReveal().reveal('.hero-section, .catalog-section', { origin: 'top' });
-    ScrollReveal().reveal('.info-content', { origin: 'bottom', interval: 200 });
-    ScrollReveal().reveal('.footer-section', { origin: 'bottom' });
-});
+    if (scrollToTopBtn) {
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+}
+
+// New animation logic with IntersectionObserver
+function initAnimations() {
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.2
+    });
+
+    revealElements.forEach(element => {
+        observer.observe(element);
+    });
+}
+
+// Run everything
+document.addEventListener('DOMContentLoaded', init);

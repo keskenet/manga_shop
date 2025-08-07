@@ -1,15 +1,17 @@
 /* Custom properties for color palette */
 :root {
-    --primary-color: #d4363a;
-    --accent-color: #ffb3ba;
-    --background-color: linear-gradient(135deg, #f0f0f0 0%, #dcdcdc 100%); /* Градієнтний фон */
-    --background-dark: #2c1810;
-    --glass-bg: rgba(255, 255, 255, 0.4); /* Колір для "скла" */
-    --text-dark: #1f2937;
-    --text-light: #f9f9f9;
-    --shadow-color: rgba(0, 0, 0, 0.08); /* Оновлена тінь */
-    --border-color: rgba(255, 255, 255, 0.2);
+    --primary-color: #d4363a; /* Червоний сакури */
+    --accent-color: #ffb3ba; /* Ніжно-рожевий */
+    --background-color: #f9f9f9; /* Світлий, майже білий фон */
+    --background-subtle: #f0f0f0; /* Ледь помітний сіруватий відтінок */
+    --background-dark: #2c1810; /* Темний, майже чорний */
+    --glass-bg: rgba(255, 255, 255, 0.4); /* Напівпрозорий білий */
+    --text-dark: #1f2937; /* Темно-сірий текст */
+    --text-light: #f9f9f9; /* Світлий текст */
+    --shadow-color: rgba(0, 0, 0, 0.08); /* М'яка тінь */
+    --border-color: rgba(0, 0, 0, 0.1); /* Ледь помітна рамка */
     --font-family-primary: 'Poppins', sans-serif;
+    --font-family-secondary: 'Playfair Display', serif; /* Новий шрифт для заголовків */
 }
 
 /* Base styles and typography */
@@ -25,14 +27,16 @@ html {
 
 body {
     font-family: var(--font-family-primary);
-    background: var(--background-color); /* Застосовано градієнт */
+    background: var(--background-color);
     color: var(--text-dark);
     line-height: 1.6;
     overflow-x: hidden;
 }
 
+
 h1, h2, h3, h4, h5, h6 {
-    font-weight: 600;
+    font-family: var(--font-family-secondary);
+    font-weight: 700;
 }
 
 a {
@@ -51,9 +55,15 @@ a:hover {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* Напівпрозорий фон */
-    backdrop-filter: blur(10px); /* Ефект сильнішого розмиття */
+    background-color: transparent; /* Початково прозорий */
     z-index: 1000;
+    transition: background-color 0.4s ease;
+}
+
+.header.scrolled {
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
 .header-container {
@@ -72,10 +82,15 @@ a:hover {
     transition: color 0.3s ease;
 }
 
-.logo,
 .main-nav a,
 .cart-toggle-btn {
-    color: #fff;
+    color: var(--text-dark); /* Колір посилань в шапці */
+    transition: color 0.3s ease;
+}
+
+.header:not(.scrolled) .main-nav a,
+.header:not(.scrolled) .cart-toggle-btn {
+    color: #fff; /* Колір посилань для прозорої шапки */
 }
 
 .main-nav ul {
@@ -113,7 +128,6 @@ a:hover {
     padding: 0.5rem;
     display: flex;
     align-items: center;
-    transition: color 0.3s ease;
 }
 
 .cart-toggle-btn:hover {
@@ -147,28 +161,36 @@ a:hover {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
+    background: var(--background-subtle);
+    border-radius: 20px;
+    margin-top: -80px;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    z-index: 10;
 }
 
 /* Hero Section */
 .hero-section {
     position: relative;
-    width: 100vw; 
+    width: 100vw;
     left: calc(50% - 50vw);
-    height: 100vh; /* Розтягнуто на всю висоту */
+    height: 100vh;
     min-height: 500px;
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1549495764-16e788079075?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwzfHxqYXBwYW4lMjBtYW5nYXxlbnwwfHx8fDE3NTMxMTIxNDJ8MA&ixlib=rb-4.1.0&q=85') no-repeat center top/cover;
     color: var(--text-light);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
+    background-attachment: fixed; /* Ефект паралаксу */
+    padding: 2rem;
     background-blend-mode: multiply;
-    padding: 2rem; /* Додано padding для контенту всередині секції */
 }
 
 .hero-text-content {
     max-width: 800px;
-    animation: fadeIn 1s ease-in-out;
+    position: relative;
 }
 
 .hero-text-content h1 {
@@ -234,8 +256,7 @@ a:hover {
     border: 1px solid var(--border-color);
     border-radius: 50px;
     font-size: 1rem;
-    background-color: var(--glass-bg); 
-    backdrop-filter: blur(5px);
+    background-color: #fff;
     color: var(--text-dark);
     transition: all 0.3s ease;
 }
@@ -269,7 +290,7 @@ a:hover {
 }
 
 .manga-card {
-    background-color: var(--glass-bg); 
+    background-color: var(--glass-bg);
     backdrop-filter: blur(5px);
     border-radius: 15px;
     overflow: hidden;
@@ -280,7 +301,7 @@ a:hover {
 
 .manga-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 40px var(--shadow-color);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
 .manga-image-container {
@@ -304,7 +325,7 @@ a:hover {
     position: absolute;
     top: 1rem;
     right: 1rem;
-    background-color: rgba(255, 255, 255, 0.6); 
+    background-color: rgba(255, 255, 255, 0.7);
     color: var(--text-dark);
     padding: 0.4rem 0.8rem;
     border-radius: 50px;
@@ -382,6 +403,7 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 4rem;
+    margin-bottom: 4rem;
 }
 
 .info-content.alternate {
@@ -424,7 +446,7 @@ a:hover {
     right: 0;
     height: 100vh;
     width: 380px;
-    background-color: var(--glass-bg); 
+    background-color: var(--glass-bg);
     backdrop-filter: blur(10px);
     box-shadow: -10px 0 20px rgba(0, 0, 0, 0.1);
     transform: translateX(100%);
@@ -589,9 +611,10 @@ a:hover {
 
 /* Footer */
 .footer-section {
-    background-color: var(--background-dark);
-    color: #aaa;
+    background: #2a2a2a;
+    color: #ccc;
     padding: 4rem 2rem;
+    font-family: var(--font-family-primary);
 }
 
 .footer-container {
@@ -605,9 +628,10 @@ a:hover {
 }
 
 .footer-logo {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 700;
-    color: #fff;
+    color: var(--accent-color);
+    font-family: var(--font-family-secondary);
 }
 
 .footer-links {
@@ -634,22 +658,45 @@ a:hover {
 .copyright {
     text-align: center;
     margin-top: 3rem;
-    font-size: 0.8rem;
-    color: #666;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* Scroll-to-Top Button */
+.scroll-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    z-index: 999;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.scroll-to-top:hover {
+    transform: translateY(-5px);
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
 /* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 .reveal {
     opacity: 0;
     transform: translateY(20px);
@@ -659,6 +706,22 @@ a:hover {
 .reveal.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+.reveal-text {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInSlideUp 1s cubic-bezier(0.2, 0, 0.2, 1) forwards;
+}
+
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+
+@keyframes fadeInSlideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Media Queries */
