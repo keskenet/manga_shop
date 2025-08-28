@@ -23,287 +23,323 @@ const mangaData = [
     },
     {
         id: '3',
-        title: 'Односкачний',
-        author: 'Віатьон',
+        title: 'Зошит Смерті',
+        author: 'Цугумі Оба',
         price: 279.99,
-        description: 'Комедійна історія про героя, який може перемогти будь-кого одним ударом.',
-        image_url: 'https://images.unsplash.com/photo-1709675577966-6231e5a2ac43?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwzfHxtYW5nYXxlbnwwfHx8fDE3NTMwMzczNTR8MA&ixlib=rb-4.1.0&q=85',
-        genre: 'Комедія',
-        volumes: 29,
+        description: 'Психологічний трилер про школяра, який знаходить зошит, що вбиває людей.',
+        image_url: 'https://images.unsplash.com/photo-1620958100067-c0e782e4e1a0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwyfHxEZWF0aCUyME5vdGV8ZW58MHx8fHwxNzUzMDM3NDAwfDA&ixlib=rb-4.1.0&q=85',
+        genre: 'Детектив',
+        volumes: 12,
         rating: 4.7
     },
     {
         id: '4',
-        title: 'Демон Слейер',
-        author: 'Коюхару Гобуне',
-        price: 329.99,
-        description: 'Історія про хлопчика, який стає мисливцем на демонів.',
-        image_url: 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwyfHxhbmltZXxlbnwwfHx8fDE3NTMxMDExNTZ8MA&ixlib=rb-4.1.0&q=85',
-        genre: 'Екшн',
+        title: 'Клинок, що знищує демонів',
+        author: 'Койохару Готоге',
+        price: 319.99,
+        description: 'Пригодницька фентезі про мисливця на демонів, який шукає ліки для своєї сестри.',
+        image_url: 'https://images.unsplash.com/photo-1634027771741-f050f523c960?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwxfHxEZW1vbiUyMFNsYXllcnxlbnwwfHx8fDE3NTMwMzczNTR8MA&ixlib=rb-4.1.0&q=85',
+        genre: 'Фентезі',
         volumes: 23,
         rating: 4.9
     },
     {
         id: '5',
-        title: 'Мій Академічний Герой',
-        author: 'Кохей Хорікоші',
-        price: 289.99,
-        description: 'Світ, де майже всі мають суперсили, а головний герой - ні.',
-        image_url: 'https://images.unsplash.com/photo-1601850494422-3cf14624b0b3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwzfHxhbmltZXxlbnwwfHx8fDE3NTMxMDExNTZ8MA&ixlib=rb-4.1.0&q=85',
-        genre: 'Супергерої',
-        volumes: 38,
-        rating: 4.6
+        title: 'Берсерк',
+        author: 'Кентаро Міура',
+        price: 499.99,
+        description: 'Похмуре фентезі про воїна-одинака на ім\'я Гатс.',
+        image_url: 'https://images.unsplash.com/photo-1639800936359-009121a9a838?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwxfHxCZXJzZXJrfGVufDB8fHx8MTc1MzA1NjcwOXww&ixlib=rb-4.1.0&q=85',
+        genre: 'Дарк Фентезі',
+        volumes: 41,
+        rating: 5.0
     },
     {
         id: '6',
-        title: 'Джуджицу Кайсен',
-        author: 'Геге Акутамі',
-        price: 319.99,
-        description: 'Студенти борються з прокльонами у сучасному Токіо.',
-        image_url: 'https://images.unsplash.com/photo-1519638399535-1b036603ac77?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHxhbmltZXxlbnwwfHx8fDE3NTMxMDExNTZ8MA&lib=rb-4.1.0&q=85',
-        genre: 'Містика',
-        volumes: 24,
+        title: 'Ван Піс',
+        author: 'Ейічіро Ода',
+        price: 289.99,
+        description: 'Пригоди піратської команди у пошуках легендарного скарбу.',
+        image_url: 'https://images.unsplash.com/photo-1601618335345-d8edb2f29910?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwyfHxPbmUlMjBQaWVjZXxlbnwwfHx8fDE3NTMwNTY3MDl8MA&ixlib=rb-4.1.0&q=85',
+        genre: 'Пригоди',
+        volumes: 108,
         rating: 4.8
     },
     {
         id: '7',
-        title: 'One Piece',
-        author: 'Ейічіро Ода',
-        price: 399.99,
-        description: 'Епічна пригода молодого пірата Манкі Д. Луффі в пошуках скарбів.',
-        image_url: 'https://m.media-amazon.com/images/M/MV5BMTNjNGU4NTUtYmVjMy00YjRiLTkxMWUtNzZkMDNiYjZhNmViXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg',
-        genre: 'Пригоди',
-        volumes: 111,
-        rating: 5.0
+        title: 'Сейлор Мун',
+        author: 'Наоко Такеучі',
+        price: 259.99,
+        description: 'Історія про дівчинку, яка стає чарівною воїтелькою для захисту Землі.',
+        image_url: 'https://images.unsplash.com/photo-1623992215904-8b63e528b146?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwyfHxTYWlsb3IlMjBNb29ufGVufDB8fHx8MTc1MzA1Njk0M3ww&ixlib=rb-4.1.0&q=85',
+        genre: 'Махо-сьодзьо',
+        volumes: 18,
+        rating: 4.5
     },
     {
         id: '8',
-        title: 'Dragon Ball',
-        author: 'Акіра Торіяма',
-        price: 249.99,
-        description: 'Класична історія про хлопчика на ім\'я Гоку, який шукає Драконячі Кулі.',
-        image_url: 'https://m.media-amazon.com/images/M/MV5BMGQ0ZWE4NDYtYWY0Mi00MjE0LWI1MzctZDA1NGExYzE3N2FiXkEyXkFqcGc@._V1_.jpg',
-        genre: 'Екшн',
-        volumes: 42,
-        rating: 4.9
+        title: 'Хеллсинг',
+        author: 'Кота Хірано',
+        price: 329.99,
+        description: 'Окультний бойовик про організацію, що бореться з надприродними загрозами.',
+        image_url: 'https://images.unsplash.com/photo-1639726880053-a1f9a0c0a52f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwxfHxIZWxsc2luZ3xlbnwwfHx8fDE3NTMwNTY5NDN8MA&ixlib-rb-4.1.0&q=85',
+        genre: 'Жахи',
+        volumes: 10,
+        rating: 4.7
     },
     {
         id: '9',
-        title: 'Death Note',
-        author: 'Цугумі Оба',
-        price: 279.99,
-        description: 'Захопливий трилер про учня, який знаходить зошит смерті.',
-        image_url: 'https://upload.wikimedia.org/wikipedia/en/thumb/7/72/Death_Note_Characters.jpg/250px-Death_Note_Characters.jpg',
-        genre: 'Містика',
-        volumes: 12,
+        title: 'Жожо',
+        author: 'Хірохіко Аракі',
+        price: 369.99,
+        description: 'Серія про пригоди різних поколінь родини Джостарів, що борються зі злом.',
+        image_url: 'https://images.unsplash.com/photo-1639999665511-b2866f571b04?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwxfHxqbydqaW8lMjBiYmN8ZW58MHx8fHwxNzU0MDYzMTc5fDA&ixlib-rb-4.1.0&q=85',
+        genre: 'Пригоди',
+        volumes: 131,
         rating: 4.9
     }
 ];
 
-let filteredManga = [...mangaData];
-const mangaGrid = document.getElementById('manga-grid');
-const searchInput = document.getElementById('search-input');
-const genreSelect = document.getElementById('genre-select');
-const cartToggleBtn = document.getElementById('cart-toggle-btn');
+// --- Shared cart logic and other functionality ---
+
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 const cartSidebar = document.getElementById('cart-sidebar');
-const closeCartBtn = document.getElementById('close-cart-btn');
-const cartContent = document.getElementById('cart-content');
-const cartBadge = document.getElementById('cart-badge');
-const header = document.getElementById('header');
-const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+const cartItemsContainer = document.getElementById('cart-items');
+const cartTotalPrice = document.getElementById('cart-total-price');
+const cartCount = document.getElementById('cart-count');
 
-// ====== КОШИК LOCALSTORAGE ======
-function getCart() { return JSON.parse(localStorage.getItem('cart')) || []; }
-function setCart(cart) { localStorage.setItem('cart', JSON.stringify(cart)); }
+const updateCartCount = () => {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartCount.textContent = totalItems;
+};
 
-// ====== ВІДМАЛЬОВКА МАНГИ ======
-function renderManga() {
-    if (!mangaGrid) return;
-    mangaGrid.innerHTML = '';
-    
-    if (filteredManga.length === 0) {
-        mangaGrid.innerHTML = '<p style="text-align:center; padding: 2rem; color: #777;">На жаль, за вашим запитом нічого не знайдено.</p>';
-        return;
-    }
+const getCart = () => cart;
+const saveCart = () => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+};
 
-    filteredManga.forEach(manga => {
-        const card = document.createElement('div');
-        card.className = 'manga-card reveal';
-        card.innerHTML = `
-            <div class="manga-image-container">
-                <img src="${manga.image_url}" alt="${manga.title}" class="manga-image">
-                <div class="manga-rating">⭐ ${manga.rating}</div>
-            </div>
-            <div class="manga-info">
-                <div>
-                    <h3>${manga.title}</h3>
-                    <p class="manga-author">${manga.author}</p>
-                </div>
-                <p class="manga-description">${manga.description}</p>
-                <div class="manga-footer">
-                    <span class="manga-price">${manga.price.toFixed(2)} ₴</span>
-                    <button class="add-to-cart-btn" data-id="${manga.id}">Додати</button>
-                </div>
-            </div>
-        `;
-        mangaGrid.appendChild(card);
-    });
-
-    // Після рендерингу, ініціюємо анімацію
-    initAnimations();
-}
-
-// ====== ФІЛЬТРАЦІЯ ======
-function filterManga() {
-    const searchTerm = searchInput.value.toLowerCase();
-    const selectedGenre = genreSelect.value;
-    filteredManga = mangaData.filter(manga => {
-        const matchesSearch = manga.title.toLowerCase().includes(searchTerm) ||
-                              manga.author.toLowerCase().includes(searchTerm);
-        const matchesGenre = selectedGenre === 'Всі' || manga.genre === selectedGenre;
-        return matchesSearch && matchesGenre;
-    });
-    renderManga();
-}
-
-// ====== КОШИК + sidebar ======
-function addToCart(mangaId) {
-    const manga = mangaData.find(m => m.id === mangaId);
-    if (!manga) return;
-    let cart = getCart();
-    const existingItem = cart.find(item => item.id === mangaId);
-    if (existingItem) {
-        existingItem.quantity += 1;
-    } else {
-        cart.push({ ...manga, quantity: 1 });
-    }
-    setCart(cart);
-    updateCartDisplay();
-    showCartSidebar();
-}
-
-function removeFromCart(mangaId) {
-    let cart = getCart();
-    cart = cart.filter(item => item.id !== mangaId);
-    setCart(cart);
-    updateCartDisplay();
-}
-
-function updateQuantity(mangaId, newQuantity) {
-    let cart = getCart();
-    if (newQuantity <= 0) {
-        cart = cart.filter(item => item.id !== mangaId);
-    } else {
-        const item = cart.find(item => item.id === mangaId);
-        if (item) item.quantity = newQuantity;
-    }
-    setCart(cart);
-    updateCartDisplay();
-}
-
-function updateCartDisplay() {
-    let cart = getCart();
-    const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-    if (cartBadge) cartBadge.textContent = cartCount;
-    if (!cartContent) return;
+const renderCart = () => {
+    cartItemsContainer.innerHTML = '';
+    let total = 0;
 
     if (cart.length === 0) {
-        cartContent.innerHTML = `
-            <div class="empty-cart">
-                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-                <p>Кошик порожній</p>
-            </div>
-        `;
+        cartItemsContainer.innerHTML = '<p class="cart-empty-message">Кошик порожній 😔</p>';
     } else {
-        const cartTotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        cartContent.innerHTML = `
-            <div class="cart-items">
-                ${cart.map(item => `
-                    <div class="cart-item">
-                        <img src="${item.image_url}" alt="${item.title}" class="cart-item-image">
-                        <div class="cart-item-info">
-                            <h4>${item.title}</h4>
-                            <p class="cart-item-price">${item.price.toFixed(2)} ₴</p>
-                        </div>
-                        <div class="cart-item-controls">
-                            <button class="quantity-btn" data-id="${item.id}" data-action="decrease">−</button>
-                            <span>${item.quantity}</span>
-                            <button class="quantity-btn" data-id="${item.id}" data-action="increase">+</button>
-                            <button class="remove-item-btn" data-id="${item.id}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                            </button>
-                        </div>
-                    </div>
-                `).join('')}
-            </div>
-            <div class="cart-summary">
-                <div class="cart-total">
-                    <span>Загалом:</span>
-                    <span>${cartTotal.toFixed(2)} ₴</span>
+        cart.forEach(item => {
+            const li = document.createElement('li');
+            li.classList.add('cart-item');
+            li.innerHTML = `
+                <img src="${item.image_url}" alt="${item.title}" class="cart-item-image">
+                <div class="cart-item-info">
+                    <span class="cart-item-title">${item.title}</span>
+                    <span class="cart-item-price">${item.price.toFixed(2)} ₴</span>
                 </div>
-                <button class="checkout-btn">Оформити замовлення</button>
-            </div>
-        `;
-    }
-}
-
-function showCartSidebar() {
-    if (cartSidebar) {
-        cartSidebar.classList.add('visible');
-    }
-    updateCartDisplay();
-}
-
-function hideCartSidebar() {
-    if (cartSidebar) {
-        cartSidebar.classList.remove('visible');
-    }
-}
-
-function checkout() {
-    let cart = getCart();
-    if (cart.length === 0) {
-        alert('Кошик порожній!');
-        return;
-    }
-    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    alert(`Дякуємо за замовлення!\n\nЗагальна сума: ${total.toFixed(2)} ₴\n\nМи зв'яжемося з вами найближчим часом! 🌸`);
-    setCart([]);
-    updateCartDisplay();
-    hideCartSidebar();
-}
-
-// ====== ІНІЦІАЛІЗАЦІЯ І ОБРОБНИКИ ПОДІЙ ======
-function init() {
-    renderManga();
-    updateCartDisplay();
-    initEventListeners();
-    initAnimations();
-}
-
-function initEventListeners() {
-    if (searchInput) searchInput.addEventListener('input', filterManga);
-    if (genreSelect) genreSelect.addEventListener('change', filterManga);
-    if (cartToggleBtn) cartToggleBtn.addEventListener('click', showCartSidebar);
-    if (closeCartBtn) closeCartBtn.addEventListener('click', hideCartSidebar);
-    if (mangaGrid) {
-        mangaGrid.addEventListener('click', (e) => {
-            const btn = e.target.closest('.add-to-cart-btn');
-            if (btn) {
-                addToCart(btn.dataset.id);
-            }
+                <div class="cart-item-actions">
+                    <button class="cart-item-quantity-btn" data-id="${item.id}" data-action="decrease">-</button>
+                    <span class="cart-item-quantity">${item.quantity}</span>
+                    <button class="cart-item-quantity-btn" data-id="${item.id}" data-action="increase">+</button>
+                    <button class="cart-item-remove-btn" data-id="${item.id}">&times;</button>
+                </div>
+            `;
+            cartItemsContainer.appendChild(li);
+            total += item.price * item.quantity;
         });
     }
 
-    if (cartContent) {
-        cartContent.addEventListener('click', (e) => {
+    cartTotalPrice.textContent = total.toFixed(2);
+    updateCartCount();
+};
+
+const addToCart = (product) => {
+    const existingItem = cart.find(item => item.id === product.id);
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({ ...product, quantity: 1 });
+    }
+    saveCart();
+    renderCart();
+    // відкрити кошик але не ховати його
+    if (typeof window.openCart === 'function') window.openCart();
+};
+
+const updateQuantity = (id, newQuantity) => {
+    const item = cart.find(item => item.id === id);
+    if (item) {
+        if (newQuantity <= 0) {
+            cart = cart.filter(item => item.id !== id);
+        } else {
+            item.quantity = newQuantity;
+        }
+    }
+    saveCart();
+    renderCart();
+};
+
+// --- Checkout Modal Logic ---
+const modal = document.getElementById('checkout-modal');
+const modalFormContainer = document.getElementById('modal-form-container');
+const modalConfirmation = document.getElementById('modal-confirmation');
+const modalOrderSummaryContainer = document.getElementById('modal-order-summary');
+const modalTotalPrice = document.getElementById('modal-total-price');
+const modalCloseBtn = document.getElementById('modal-close-btn');
+const modalCloseAfterBtn = document.getElementById('modal-close-after-btn');
+const originalFormParent = () => document.querySelector('.cart-checkout-form') || null;
+
+const moveFormToModal = () => {
+    const form = document.getElementById('checkout-form');
+    if (!form || !modalFormContainer) return;
+    modalFormContainer.appendChild(form);
+};
+
+const moveFormBack = () => {
+    const form = document.getElementById('checkout-form');
+    const origParent = originalFormParent();
+    if (!form || !origParent) return;
+    origParent.appendChild(form);
+};
+
+const renderModalOrderSummary = () => {
+    if (!modalOrderSummaryContainer || !modalTotalPrice) return;
+
+    modalOrderSummaryContainer.innerHTML = '';
+    let total = 0;
+
+    if (cart.length === 0) {
+        modalOrderSummaryContainer.innerHTML = '<p>Немає товарів для замовлення.</p>';
+    } else {
+        cart.forEach(item => {
+            const summaryItem = document.createElement('div');
+            summaryItem.className = 'summary-item';
+            summaryItem.innerHTML = `
+                <img src="${item.image_url}" alt="${item.title}" class="summary-item-image">
+                <div class="summary-item-info">
+                    <div class="summary-item-title">${item.title}</div>
+                    <div class="summary-item-details">Кількість: ${item.quantity}</div>
+                </div>
+                <div class="summary-item-price">${(item.price * item.quantity).toFixed(2)} ₴</div>
+            `;
+            modalOrderSummaryContainer.appendChild(summaryItem);
+            total += item.price * item.quantity;
+        });
+    }
+
+    modalTotalPrice.textContent = `${total.toFixed(2)} ₴`;
+};
+
+const showCheckoutForm = () => {
+    if (cart.length === 0) {
+        alert('Ваш кошик порожній!');
+        return;
+    }
+    
+    if (modalConfirmation) {
+        modalConfirmation.classList.remove('active');
+        modalConfirmation.setAttribute('aria-hidden', 'true');
+    }
+    if (modal.querySelector('.modal-body')) {
+        modal.querySelector('.modal-body').style.display = 'flex';
+    }
+    
+    renderModalOrderSummary();
+    moveFormToModal();
+    
+    if (modal) {
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+    }
+};
+
+const hideCheckoutForm = () => {
+    if (modal) {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+    }
+    moveFormBack();
+};
+
+const confirmOrder = () => {
+    const form = document.getElementById('checkout-form');
+    if (form && form.checkValidity()) {
+        if (modal.querySelector('.modal-body')) {
+            modal.querySelector('.modal-body').style.display = 'none';
+        }
+        if (modalConfirmation) {
+            modalConfirmation.classList.add('active');
+            modalConfirmation.setAttribute('aria-hidden', 'false');
+        }
+        
+        cart = [];
+        saveCart();
+        renderCart();
+        
+        setTimeout(moveFormBack, 500);
+
+        setTimeout(() => {
+            if (modal && modal.classList.contains('active')) {
+                hideCheckoutForm();
+            }
+        }, 3500);
+    } else {
+        if (form) form.reportValidity();
+    }
+};
+
+// Replace toggle-only behavior with explicit open/close and expose for other modules
+const openCart = () => {
+	// гарантуємо, що кошик відкритий
+	if (cartSidebar && !cartSidebar.classList.contains('active')) {
+		cartSidebar.classList.add('active');
+	}
+};
+const closeCart = () => {
+	if (cartSidebar && cartSidebar.classList.contains('active')) {
+		cartSidebar.classList.remove('active');
+		// При закритті повертаємо форму в стандартний стан
+		hideCheckoutForm();
+	}
+};
+// Для сумісності з існуючими місцями залишаємо toggle
+const toggleCartSidebar = () => {
+	if (!cartSidebar) return;
+	cartSidebar.classList.toggle('active');
+	if (!cartSidebar.classList.contains('active')) {
+		hideCheckoutForm();
+	}
+};
+
+// Робимо доступним глобально (accessories.js може викликати)
+window.openCart = openCart;
+window.closeCart = closeCart;
+window.toggleCartSidebar = toggleCartSidebar;
+
+function initListeners() {
+    const cartToggleBtn = document.getElementById('cart-toggle-btn');
+    const cartCloseBtn = document.querySelector('.cart-close-btn');
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+    const checkoutForm = document.getElementById('checkout-form');
+
+    if (cartToggleBtn) cartToggleBtn.addEventListener('click', toggleCartSidebar);
+    if (cartCloseBtn) cartCloseBtn.addEventListener('click', toggleCartSidebar);
+
+	// Theme toggle button listener (може бути відсутній на деяких сторінках)
+	if (themeToggleBtn) {
+		themeToggleBtn.addEventListener('click', toggleTheme);
+	}
+
+    if (cartSidebar) {
+        cartSidebar.addEventListener('click', (e) => {
             const btn = e.target.closest('button');
             if (!btn) return;
+
             const id = btn.dataset.id;
             const action = btn.dataset.action;
-            
-            if (btn.classList.contains('remove-item-btn')) {
-                removeFromCart(id);
+
+            if (btn.classList.contains('cart-item-remove-btn')) {
+                cart = cart.filter(item => item.id !== id);
+                saveCart();
+                renderCart();
             } else if (action === 'increase') {
                 const item = getCart().find(item => item.id === id);
                 if (item) updateQuantity(id, item.quantity + 1);
@@ -311,38 +347,58 @@ function initEventListeners() {
                 const item = getCart().find(item => item.id === id);
                 if (item) updateQuantity(id, item.quantity - 1);
             } else if (btn.classList.contains('checkout-btn')) {
-                checkout();
+                showCheckoutForm();
             }
         });
     }
 
-    // Header scroll logic
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
+    document.body.addEventListener('change', (e) => {
+        if (e.target.matches('.payment-options input[type="radio"]')) {
+            document.querySelectorAll('.payment-options label').forEach(label => label.classList.remove('selected'));
+            e.target.closest('label').classList.add('selected');
         }
+    });
 
-        // Scroll to top button logic
-        if (window.scrollY > 300) {
-            scrollToTopBtn.classList.add('visible');
-        } else {
-            scrollToTopBtn.classList.remove('visible');
+    if (modalCloseBtn) modalCloseBtn.addEventListener('click', hideCheckoutForm);
+    if (modalCloseAfterBtn) modalCloseAfterBtn.addEventListener('click', hideCheckoutForm);
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target.matches('[data-modal-close]')) {
+                hideCheckoutForm();
+            }
+        });
+    }
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+            hideCheckoutForm();
+        }
+    });
+
+    if (checkoutForm) {
+        checkoutForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            confirmOrder();
+        });
+    }
+
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (header) {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        }
+        if (scrollToTopBtn) {
+            scrollToTopBtn.classList.toggle('visible', window.scrollY > 300);
         }
     });
 
     if (scrollToTopBtn) {
         scrollToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
 }
 
-// New animation logic with IntersectionObserver
 function initAnimations() {
     const revealElements = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
@@ -352,14 +408,96 @@ function initAnimations() {
                 observer.unobserve(entry.target);
             }
         });
-    }, {
-        threshold: 0.2
-    });
-
-    revealElements.forEach(element => {
-        observer.observe(element);
-    });
+    }, { threshold: 0.1 });
+    revealElements.forEach(element => observer.observe(element));
 }
 
-// Run everything
-document.addEventListener('DOMContentLoaded', init);
+function initMangaPage() {
+    const mangaGrid = document.getElementById('manga-grid');
+    if (!mangaGrid) return;
+
+    const catalogSearch = document.getElementById('catalog-search');
+    const sortBy = document.getElementById('sort-by');
+
+    const renderManga = (mangaItems) => {
+        mangaGrid.innerHTML = '';
+        mangaItems.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <img src="${item.image_url}" alt="${item.title}" class="product-image">
+                <div class="card-content">
+                    <h3 class="card-title">${item.title}</h3>
+                    <p class="card-detail">${item.author}</p>
+                    <p class="card-price">${item.price.toFixed(2)} ₴</p>
+                    <button class="add-to-cart-btn" data-id="${item.id}">Додати в кошик</button>
+                </div>
+            `;
+            mangaGrid.appendChild(card);
+        });
+    };
+
+    const filterAndSortManga = () => {
+        const query = catalogSearch.value.toLowerCase();
+        const sortValue = sortBy.value;
+
+        let filtered = mangaData.filter(manga => 
+            manga.title.toLowerCase().includes(query) ||
+            manga.author.toLowerCase().includes(query)
+        );
+
+        if (sortValue === 'price-asc') filtered.sort((a, b) => a.price - b.price);
+        if (sortValue === 'price-desc') filtered.sort((a, b) => b.price - a.price);
+
+        renderManga(filtered);
+    };
+    
+    mangaGrid.addEventListener('click', (e) => {
+        const btn = e.target.closest('.add-to-cart-btn');
+        if (btn) {
+            const id = btn.dataset.id;
+            const product = mangaData.find(item => item.id === id);
+            if (product) {
+                // addToCart вже відкриває кошик (window.openCart), тому не ховаємо його тут
+                addToCart(product);
+            }
+        }
+    });
+
+    catalogSearch.addEventListener('input', filterAndSortManga);
+    sortBy.addEventListener('change', filterAndSortManga);
+
+    filterAndSortManga();
+}
+
+// --- Theme (light/dark) logic ---
+const themeToggleBtn = document.getElementById('theme-toggle-btn');
+
+const applyTheme = (theme) => {
+	if (theme === 'dark') {
+		document.documentElement.setAttribute('data-theme', 'dark');
+		if (themeToggleBtn) themeToggleBtn.textContent = '☀️';
+	} else {
+		document.documentElement.removeAttribute('data-theme');
+		if (themeToggleBtn) themeToggleBtn.textContent = '🌙';
+	}
+	localStorage.setItem('theme', theme === 'dark' ? 'dark' : 'light');
+};
+
+const toggleTheme = () => {
+	const current = localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
+	const next = current === 'dark' ? 'light' : 'dark';
+	applyTheme(next);
+};
+window.toggleTheme = toggleTheme;
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Застосувати збережену тему одразу
+    const savedTheme = localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
+    applyTheme(savedTheme);
+
+    initListeners();
+    initAnimations();
+    renderCart();
+    initMangaPage();
+});

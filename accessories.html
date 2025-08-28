@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sakura Shop | Сучасний магазин манги</title>
+    <title>Sakura Shop | Аксесуари</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="subpage">
 
     <header class="header" id="header">
         <div class="header-container">
-            <a href="#" class="logo">🌸 Sakura Shop</a>
+            <a href="index.html" class="logo">🌸 Sakura Shop</a>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="#catalog-section">Каталог</a></li>
-                    <li><a href="#about-us-section">Про магазин</a></li>
+                    <li><a href="index.html#catalog-section">Каталог</a></li>
                     <li><a href="accessories.html">Аксесуари</a></li>
-                    <li><a href="#ramen-section">Рамен</a></li>
+                    <li><a href="index.html#about-us-section">Про магазин</a></li>
+                    <li><a href="index.html#ramen-section">Рамен</a></li>
                 </ul>
             </nav>
             <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle theme">🌙</button>
             <button class="cart-toggle-btn" id="cart-toggle-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-                <span class="cart-count" id="cart-count">0</span>
+                 <span class="cart-count" id="cart-count">0</span>
             </button>
             <div id="cart-sidebar" class="cart-sidebar">
                 <button class="cart-close-btn">&times;</button>
@@ -71,63 +71,23 @@
     </header>
 
     <main>
-        <section id="hero-section" class="hero-section">
-            <div class="hero-content">
-                <h1 class="hero-title">Поринь у світ японської культури</h1>
-                <p class="hero-subtitle">Відкрий для себе найкращий магазин манги та тематичних аксесуарів в Україні</p>
-                <a href="#catalog-section" class="cta-button">Почати покупки</a>
-            </div>
-        </section>
-
-        <section id="catalog-section" class="catalog-section reveal">
+        <section class="accessories-section reveal">
             <div class="container">
-                <h2 class="section-title">Каталог манги</h2>
-                <p class="section-subtitle">Популярні серії, які тобі точно сподобаються</p>
-
+                <h2 class="section-title">Аксесуари</h2>
+                <p class="section-subtitle">Доповніть свою колекцію унікальними речами</p>
                 <div class="search-and-sort">
-                    <input type="text" id="catalog-search" placeholder="Пошук манги за назвою...">
+                    <input type="text" id="accessories-search" placeholder="Пошук аксесуарів...">
                     <div class="sort-options">
-                        <label for="sort-by">Сортувати за:</label>
-                        <select id="sort-by">
+                        <label for="sort-by-accessories">Сортувати за:</label>
+                        <select id="sort-by-accessories">
                             <option value="default">За замовчуванням</option>
                             <option value="price-asc">Ціна (від меншої)</option>
                             <option value="price-desc">Ціна (від більшої)</option>
                         </select>
                     </div>
                 </div>
-
-                <div class="product-grid" id="manga-grid">
+                <div class="product-grid" id="accessories-grid">
                     </div>
-            </div>
-        </section>
-
-        <section id="about-us-section" class="info-section alternate reveal">
-            <div class="info-container">
-                <div class="info-image">
-                    <img src="https://images.unsplash.com/photo-1628173426189-e58f000b953d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Магазин манги" class="reveal">
-                </div>
-                <div class="info-text">
-                    <h2 class="section-title">Про магазин</h2>
-                    <p>
-                        <span class="highlight-word">Sakura Shop</span> — це не просто магазин, а спільнота для поціновувачів японської культури. Ми пропонуємо широкий вибір манги, а також унікальні аксесуари, що перенесуть вас у улюблений аніме-світ.
-                        Наша мета — зробити японську культуру доступною та близькою для кожного в Україні. Кожна книга та кожен аксесуар в нашому асортименті відібрані з любов’ю до деталей.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section id="ramen-section" class="info-section ramen-section reveal">
-            <div class="info-container">
-                <div class="info-text">
-                    <h2 class="section-title">Справжній японський рамен</h2>
-                    <p>
-                        Окрім манги та аксесуарів, ми пропонуємо справжній японський рамен! Відчуйте смак Японії, не виходячи з дому. Кожна порція готується з автентичних інгредієнтів, щоб ви могли насолодитися унікальним смаком. Це ідеальне доповнення до вашого вечора з улюбленою мангою.
-                    </p>
-                    <a href="#catalog-section" class="cta-button">Спробувати</a>
-                </div>
-                <div class="info-image">
-                    <img src="https://images.unsplash.com/photo-1626075253896-1936c646b5a3?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Японський рамен" class="reveal">
-                </div>
             </div>
         </section>
     </main>
@@ -161,7 +121,7 @@
     <button id="scrollToTopBtn" class="scroll-to-top-btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
     </button>
-
+    
     <div id="checkout-modal" class="checkout-modal" aria-hidden="true">
         <div class="checkout-overlay" data-modal-close></div>
         <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -194,5 +154,6 @@
     </div>
 
     <script src="app.js"></script>
+    <script src="accessories.js"></script>
 </body>
 </html>

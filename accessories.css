@@ -1,0 +1,10 @@
+/* Accessories section styles */
+.accessories-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.accessories-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
