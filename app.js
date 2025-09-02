@@ -27,7 +27,7 @@ const mangaData = [
         author: 'Цугумі Оба',
         price: 279.99,
         description: 'Психологічний трилер про школяра, який знаходить зошит, що вбиває людей.',
-        image_url: 'https://images.unsplash.com/photo-1620958100067-c0e782e4e1a0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwyfHxEZWF0aCUyME5vdGV8ZW58MHx8fHwxNzUzMDM3NDAwfDA&ixlib=rb-4.1.0&q=85',
+        image_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_ILmcMG-pEhh63Yt33irZW6Jv3KsMcE5K5A&s',
         genre: 'Детектив',
         volumes: 12,
         rating: 4.7
@@ -38,7 +38,7 @@ const mangaData = [
         author: 'Койохару Готоге',
         price: 319.99,
         description: 'Пригодницька фентезі про мисливця на демонів, який шукає ліки для своєї сестри.',
-        image_url: 'https://images.unsplash.com/photo-1634027771741-f050f523c960?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwxfHxEZW1vbiUyMFNsYXllcnxlbnwwfHx8fDE3NTMwMzczNTR8MA&ixlib=rb-4.1.0&q=85',
+        image_url: 'https://uaserials.com/posters/7921.jpg',
         genre: 'Фентезі',
         volumes: 23,
         rating: 4.9
@@ -49,7 +49,7 @@ const mangaData = [
         author: 'Кентаро Міура',
         price: 499.99,
         description: 'Похмуре фентезі про воїна-одинака на ім\'я Гатс.',
-        image_url: 'https://images.unsplash.com/photo-1639800936359-009121a9a838?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwxfHxCZXJzZXJrfGVufDB8fHx8MTc1MzA1NjcwOXww&ixlib=rb-4.1.0&q=85',
+        image_url: 'https://img.yani.tv/posters/full/1636671122.jpg',
         genre: 'Дарк Фентезі',
         volumes: 41,
         rating: 5.0
@@ -60,7 +60,7 @@ const mangaData = [
         author: 'Ейічіро Ода',
         price: 289.99,
         description: 'Пригоди піратської команди у пошуках легендарного скарбу.',
-        image_url: 'https://images.unsplash.com/photo-1601618335345-d8edb2f29910?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwyfHxPbmUlMjBQaWVjZXxlbnwwfHx8fDE3NTMwNTY3MDl8MA&ixlib=rb-4.1.0&q=85',
+        image_url: 'https://jut-su.net/uploads/mini/350x450/ab/1603122714_poster.webp',
         genre: 'Пригоди',
         volumes: 108,
         rating: 4.8
@@ -71,8 +71,7 @@ const mangaData = [
         author: 'Наоко Такеучі',
         price: 259.99,
         description: 'Історія про дівчинку, яка стає чарівною воїтелькою для захисту Землі.',
-        image_url: 'https://images.unsplash.com/photo-1623992215904-8b63e528b146?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwyfHxTYWlsb3IlMjBNb29ufGVufDB8fHx8MTc1MzA1Njk0M3ww&ixlib=rb-4.1.0&q=85',
-        genre: 'Махо-сьодзьо',
+        image_url: 'https://img.yani.tv/posters/full/1636667461.jpg',
         volumes: 18,
         rating: 4.5
     },
@@ -82,7 +81,7 @@ const mangaData = [
         author: 'Кота Хірано',
         price: 329.99,
         description: 'Окультний бойовик про організацію, що бореться з надприродними загрозами.',
-        image_url: 'https://images.unsplash.com/photo-1639726880053-a1f9a0c0a52f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwxfHxIZWxsc2luZ3xlbnwwfHx8fDE3NTMwNTY5NDN8MA&ixlib-rb-4.1.0&q=85',
+        image_url: 'https://upload.wikimedia.org/wikipedia/ru/3/38/Hellsing_manga_vol1.jpg',
         genre: 'Жахи',
         volumes: 10,
         rating: 4.7
@@ -93,7 +92,7 @@ const mangaData = [
         author: 'Хірохіко Аракі',
         price: 369.99,
         description: 'Серія про пригоди різних поколінь родини Джостарів, що борються зі злом.',
-        image_url: 'https://images.unsplash.com/photo-1639999665511-b2866f571b04?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwxfHxqbydqaW8lMjBiYmN8ZW58MHx8fHwxNzU0MDYzMTc5fDA&ixlib-rb-4.1.0&q=85',
+        image_url: 'https://upload.wikimedia.org/wikipedia/ru/thumb/c/cd/JoJos_Bizarre_Adventure.jpg/960px-JoJos_Bizarre_Adventure.jpg',
         genre: 'Пригоди',
         volumes: 131,
         rating: 4.9
