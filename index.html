@@ -104,7 +104,7 @@
         <section id="about-us-section" class="info-section alternate reveal">
             <div class="info-container">
                 <div class="info-image">
-                    <img src="info1.png" alt="Магазин манги" class="reveal">
+                    <img src="info1.jpg" alt="Магазин манги" class="reveal">
                 </div>
                 <div class="info-text">
                     <h2 class="section-title">Про магазин</h2>
@@ -123,7 +123,7 @@
                     <p>
                         Окрім манги та аксесуарів, ми пропонуємо справжній японський рамен! Відчуйте смак Японії, не виходячи з дому. Кожна порція готується з автентичних інгредієнтів, щоб ви могли насолодитися унікальним смаком. Це ідеальне доповнення до вашого вечора з улюбленою мангою.
                     </p>
-                    <a href="#catalog-section" class="cta-button">Спробувати</a>
+                    <a href="#" class="cta-button">Спробувати</a>
                 </div>
                 <div class="info-image">
                     <img src="https://katana.ua/wp-content/uploads/2021/06/DSCF4553-min-1.png" alt="Японський рамен" class="reveal">
@@ -189,6 +189,40 @@
                 <h3>Дякуємо за замовлення!</h3>
                 <p>Наш менеджер зв'яжеться з вами найближчим часом. Ви отримаєте підтвердження на вказаний контакт.</p>
                 <button class="close-after-btn" id="modal-close-after-btn">Закрити</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="ramen-modal" class="ramen-modal" aria-hidden="true">
+        <div class="ramen-modal-overlay" data-ramen-modal-close></div>
+        <div class="ramen-modal-window" role="dialog" aria-modal="true">
+            <button class="ramen-modal-close-btn" data-ramen-modal-close>&times;</button>
+            
+            <div id="ramen-brewing-stage" class="ramen-stage active">
+                <h2>Готуємо ваш рамен...</h2>
+                <div class="brewing-animation">
+                    <div class="bowl">
+                        <div class="liquid"></div>
+                        <div class="steam">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+                <p>Будь ласка, зачекайте, ми створюємо кулінарний шедевр!</p>
+            </div>
+
+            <div id="ramen-order-stage" class="ramen-stage">
+                <img src="https://katana.ua/wp-content/uploads/2021/06/DSCF4553-min-1.png" alt="Смачний рамен" class="ramen-modal-image">
+                <h2>Ваш рамен готовий!</h2>
+                <p>Фірмовий Рамен "Сакура" з куркою, яйцем та свіжими овочами.</p>
+                <div class="ramen-price">189.99 ₴</div>
+                <button class="cta-button" id="ramen-order-btn">Замовити та перейти до оплати</button>
+            </div>
+
+            <div id="ramen-confirm-stage" class="ramen-stage">
+                <div class="confirm-icon">✓</div>
+                <h3>Додано в кошик!</h3>
+                <p>Зараз ми перенаправимо вас на сторінку оформлення замовлення.</p>
             </div>
         </div>
     </div>

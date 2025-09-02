@@ -99,6 +99,15 @@ const mangaData = [
     }
 ];
 
+// --- Віртуальний продукт Рамен ---
+const ramenProduct = {
+    id: 'ramen-01',
+    title: 'Фірмовий Рамен "Сакура"',
+    price: 189.99,
+    description: 'Справжній японський рамен з куркою, яйцем та свіжими овочами.',
+    image_url: 'https://katana.ua/wp-content/uploads/2021/06/DSCF4553-min-1.png'
+};
+
 // --- Shared cart logic and other functionality ---
 
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -159,8 +168,6 @@ const addToCart = (product) => {
     }
     saveCart();
     renderCart();
-    // відкрити кошик але не ховати його
-    if (typeof window.openCart === 'function') window.openCart();
 };
 
 const updateQuantity = (id, newQuantity) => {
@@ -285,9 +292,7 @@ const confirmOrder = () => {
     }
 };
 
-// Replace toggle-only behavior with explicit open/close and expose for other modules
 const openCart = () => {
-	// гарантуємо, що кошик відкритий
 	if (cartSidebar && !cartSidebar.classList.contains('active')) {
 		cartSidebar.classList.add('active');
 	}
@@ -295,11 +300,9 @@ const openCart = () => {
 const closeCart = () => {
 	if (cartSidebar && cartSidebar.classList.contains('active')) {
 		cartSidebar.classList.remove('active');
-		// При закритті повертаємо форму в стандартний стан
 		hideCheckoutForm();
 	}
 };
-// Для сумісності з існуючими місцями залишаємо toggle
 const toggleCartSidebar = () => {
 	if (!cartSidebar) return;
 	cartSidebar.classList.toggle('active');
@@ -308,7 +311,6 @@ const toggleCartSidebar = () => {
 	}
 };
 
-// Робимо доступним глобально (accessories.js може викликати)
 window.openCart = openCart;
 window.closeCart = closeCart;
 window.toggleCartSidebar = toggleCartSidebar;
@@ -322,7 +324,6 @@ function initListeners() {
     if (cartToggleBtn) cartToggleBtn.addEventListener('click', toggleCartSidebar);
     if (cartCloseBtn) cartCloseBtn.addEventListener('click', toggleCartSidebar);
 
-	// Theme toggle button listener (може бути відсутній на деяких сторінках)
 	if (themeToggleBtn) {
 		themeToggleBtn.addEventListener('click', toggleTheme);
 	}
@@ -396,6 +397,62 @@ function initListeners() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
+
+    // --- NEW: Ramen Modal Logic ---
+    const tryRamenBtn = document.querySelector('#ramen-section .cta-button');
+    const ramenModal = document.getElementById('ramen-modal');
+
+    if (tryRamenBtn && ramenModal) {
+        const brewingStage = document.getElementById('ramen-brewing-stage');
+        const orderStage = document.getElementById('ramen-order-stage');
+        const confirmStage = document.getElementById('ramen-confirm-stage');
+        const orderBtn = document.getElementById('ramen-order-btn');
+
+        const showRamenStage = (stageToShow) => {
+            [brewingStage, orderStage, confirmStage].forEach(stage => {
+                stage.classList.remove('active');
+            });
+            stageToShow.classList.add('active');
+        };
+
+        const openRamenModal = () => {
+            ramenModal.classList.add('active');
+            ramenModal.setAttribute('aria-hidden', 'false');
+            showRamenStage(brewingStage);
+
+            // Симуляція часу приготування (3 секунди)
+            setTimeout(() => {
+                showRamenStage(orderStage);
+            }, 3000);
+        };
+
+        const closeRamenModal = () => {
+            ramenModal.classList.remove('active');
+            ramenModal.setAttribute('aria-hidden', 'true');
+        };
+
+        tryRamenBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openRamenModal();
+        });
+
+        ramenModal.addEventListener('click', (e) => {
+            if (e.target.matches('[data-ramen-modal-close]')) {
+                closeRamenModal();
+            }
+        });
+
+        orderBtn.addEventListener('click', () => {
+            addToCart(ramenProduct);
+            showRamenStage(confirmStage);
+
+            // Закриваємо модалку рамену і відкриваємо кошик з оплатою
+            setTimeout(() => {
+                closeRamenModal();
+                showCheckoutForm(); 
+            }, 2000);
+        });
+    }
 }
 
 function initAnimations() {
@@ -457,8 +514,8 @@ function initMangaPage() {
             const id = btn.dataset.id;
             const product = mangaData.find(item => item.id === id);
             if (product) {
-                // addToCart вже відкриває кошик (window.openCart), тому не ховаємо його тут
                 addToCart(product);
+                openCart();
             }
         }
     });
@@ -491,7 +548,6 @@ const toggleTheme = () => {
 window.toggleTheme = toggleTheme;
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Застосувати збережену тему одразу
     const savedTheme = localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
     applyTheme(savedTheme);
 
